@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     try {
         $stmt = $conn->prepare("INSERT INTO funcionarios (nome, email, telefone, senha, setor) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssiss", $nome, $email, $telefone, $senha, $setor);
+        $stmt->bind_param("sssss", $nome, $email, $telefone, $senha, $setor);
         $stmt->execute();
         $_SESSION['usuario'] = [
     'nome' => $nome,
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     'setor' => $setor
 ];
 
-        header("Location: login.php?success=1");
+header("Location: login.php");
         exit;
     } catch (Exception $e) {
         $erro = "Erro ao cadastrar: " . $e->getMessage();

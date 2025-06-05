@@ -1,6 +1,7 @@
 <?php
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -309,7 +310,7 @@ a {
                 <li><a href="#">Contato</a></li>
                 <li><a href="biblioteca.php">Biblioteca</a></li>
             </ul>
-            <a href="autenticacao/login.php" class="btn-header">Cadastre-se</a>
+            <a  href="autenticacao/cadastro.php" class="btn-header">Cadastre-se</a>
         </nav>
     </div>
 </header>

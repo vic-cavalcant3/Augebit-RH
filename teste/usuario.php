@@ -1,124 +1,15 @@
-<?php
-// Configuração do banco
-$host = "localhost";
-$login = "root";
-$password = "";
-$bd = "augebit";
-
-$mysqli = new mysqli($host, $login, $password, $bd);
-
-if ($mysqli->connect_error) {
-    die("Erro na conexão: " . $mysqli->connect_error);
-}
-
-// Verificar se está editando um funcionário existente
-$funcionario = [];
-$isEdicao = false;
-
-if(isset($_GET['id']) && !empty($_GET['id'])) {
-    $id = $_GET['id'];
-    $result = $mysqli->query("SELECT * FROM funcionarios WHERE id = $id");
-    
-    if($result && $result->num_rows > 0) {
-        $funcionario = $result->fetch_assoc();
-        $isEdicao = true;
-    }
-}
-
-// ========== ADICIONE O DEBUG AQUI ==========
-// DEBUG - Para ver se os dados estão chegando
-if($_POST) {
-    echo "<div style='background: #f0f0f0; padding: 20px; margin: 20px; border: 2px solid #333;'>";
-    echo "<h3>🔍 DEBUG - Dados recebidos via POST:</h3>";
-    echo "<pre style='background: white; padding: 10px;'>";
-    print_r($_POST);
-    echo "</pre>";
-    echo "<p><strong>Total de campos recebidos:</strong> " . count($_POST) . "</p>";
-    echo "</div>";
-    
-    // REMOVA ESTA LINHA DEPOIS DO TESTE
-    // die("Debug finalizado - remova esta linha para continuar");
-}
-// ========== FIM DO DEBUG ==========
-
-// Processar formulário quando enviado
-if(isset($_POST['nome'])) {
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $telefone = $_POST['telefone'];
-    $cpf = $_POST['cpf'];
-    $setor = $_POST['setor'];
-    $nascimento = $_POST['nascimento'];
-    $biografia = $_POST['biografia'];
-    $email_secundario = $_POST['email_secundario'];
-    $celular = $_POST['celular'];
-    $cep = $_POST['cep'];
-    $logradouro = $_POST['logradouro'];
-    $numero = $_POST['numero'];
-    $complemento = $_POST['complemento'];
-    $bairro = $_POST['bairro'];
-    $cidade = $_POST['cidade'];
-    $estado = $_POST['estado'];
-    $linkedin = $_POST['linkedin'];
-    $github = $_POST['github'];
-    $instagram = $_POST['instagram'];
-    
-    if(isset($_POST['id']) && !empty($_POST['id'])) {
-        // ATUALIZAR funcionário existente
-        $id = $_POST['id'];
-        $query = "UPDATE funcionarios SET 
-                  nome = '$nome',
-                  email = '$email',
-                  telefone = '$telefone',
-                  cpf = '$cpf',
-                  setor = '$setor',
-                  nascimento = '$nascimento',
-                  biografia = '$biografia',
-                  email_secundario = '$email_secundario',
-                  celular = '$celular',
-                  cep = '$cep',
-                  logradouro = '$logradouro',
-                  numero = '$numero',
-                  complemento = '$complemento',
-                  bairro = '$bairro',
-                  cidade = '$cidade',
-                  estado = '$estado',
-                  linkedin = '$linkedin',
-                  github = '$github',
-                  instagram = '$instagram'
-                  WHERE id = $id";
-        
-        if($mysqli->query($query)) {
-            echo "<script>alert('Perfil atualizado com sucesso!');</script>";
-        } else {
-            echo "<script>alert('Erro ao atualizar: " . $mysqli->error . "');</script>";
-        }
-    } else {
-        // INSERIR novo funcionário
-        $senha = $_POST['senha'];
-        $query = "INSERT INTO funcionarios VALUES (NULL,
-                  '$nome', '$email', '$telefone', '$senha', '$setor', '$nascimento',
-                  '$biografia', '$email_secundario', '$celular', '$cep', '$logradouro',
-                  '$numero', '$complemento', '$bairro', '$cidade', '$estado',
-                  '$linkedin', '$github', '$instagram')";
-        
-        if($mysqli->query($query)) {
-            echo "<script>alert('Funcionário cadastrado com sucesso!');</script>";
-        } else {
-            echo "<script>alert('Erro ao cadastrar: " . $mysqli->error . "');</script>";
-        }
-    }
-}
-?>
+<?php include 'conexao.php'; ?>
+<?php include 'gravar.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Meu Perfil - AUGEBIT</title>
+  <title>Meu Perfil - AUGEBIT</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  
   <script>
     tailwind.config = {
       theme: {
@@ -145,7 +36,6 @@ if(isset($_POST['nome'])) {
 <body class="bg-gray-50 min-h-screen">
   <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
 
-
     <!-- Cabeçalho -->
     <div class="flex justify-between items-center mb-8">
       <h1 class="text-3xl font-bold text-primary-700">
@@ -164,7 +54,6 @@ if(isset($_POST['nome'])) {
       </div>
     </div>
 
-
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
       <!-- Coluna esquerda - Foto e menu -->
       <div class="lg:col-span-1 space-y-6">
@@ -172,7 +61,7 @@ if(isset($_POST['nome'])) {
         <div class="bg-white p-6 rounded-xl shadow-sm">
           <div class="flex flex-col items-center">
             <div class="relative mb-4">
-              <img id= "image-preview" class="w-40 h-40 rounded-full border-4 border-primary-100 shadow-md">
+              <img id="image-preview" src="https://via.placeholder.com/160x160?text=Foto" class="w-40 h-40 rounded-full border-4 border-primary-100 shadow-md">
             </div>
             
             <input type="file" name="foto" accept="image/*" class="hidden" id="imagemInput">
@@ -182,19 +71,11 @@ if(isset($_POST['nome'])) {
             <p class="text-xs text-gray-500 mt-1">Formatos: JPG, PNG (max. 2MB)</p>
           </div>
         </div>
-
-
       </div>
-
 
       <!-- Coluna direita - Conteúdo principal -->
       <div class="lg:col-span-3 space-y-6">
-           <form method="POST">
-
-                    <!-- ID oculto para edição -->
-          <?php if($isEdicao): ?>
-            <input type="hidden" name="id" value="<?= $funcionario['id'] ?>">
-          <?php endif; ?>
+        <form method="POST" action="gravar.php">
 
           <!-- Seção: Dados Pessoais -->
           <div id="dados-pessoais" class="bg-white p-6 rounded-xl shadow-sm">
@@ -208,31 +89,33 @@ if(isset($_POST['nome'])) {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Nome completo*</label>
-                <input type="text" name="nome" value="<?= $funcionario['nome'] ?? '' ?>" required 
+                <input type="text" name="nome" value="<?php echo htmlspecialchars($nome) ?>"
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">CPF*</label>
-                  <input type="text" name="cpf" value="<?= $funcionario['cpf'] ?? '' ?>"
-                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
+                <input type="text" name="cpf" value="<?php echo htmlspecialchars($cpf) ?>" 
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
 
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Setor*</label>
-                <input type="text" name="setor" value="<?= $funcionario['setor'] ?? '' ?>" required
-                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Setor</label>
+                <input type="text" name="setor" value="<?php echo htmlspecialchars($setor); ?>" readonly 
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500 bg-gray-100">
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Data de Nascimento</label>
-                <input type="date" name="nascimento" value="<?= $funcionario['nascimento'] ?? '' ?>"
+                <input type="date" name="nascimento" value="<?php echo htmlspecialchars($nascimento); ?>" 
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
 
               <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Biografia</label>
-                <textarea name="biografia" rows="3" class="w-full border border-gray-300 rounded-lg px-4 py-2"><?= $funcionario['biografia'] ?? '' ?></textarea>              </div>
+                <textarea name="biografia" rows="3" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500"><?php echo htmlspecialchars($biografia); ?></textarea>
+                <p class="text-xs text-gray-500 mt-1">Conte um pouco sobre você (máx. 200 caracteres)</p>
+              </div>
             </div>
           </div>
 
@@ -248,23 +131,25 @@ if(isset($_POST['nome'])) {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">E-mail principal*</label>
-                <input type="email" name="email" value="<?= $funcionario['email'] ?? '' ?>"                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
+                <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" readonly 
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500 bg-gray-100">
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">E-mail secundário</label>
-              <input type="email" name="email_secundario" value="<?= $funcionario['email_secundario'] ?? '' ?>"
+                <input type="email" name="email_secundario" value=""
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Telefone*</label>
-                <input type="tel" name="telefone" value="<?= $funcionario['telefone'] ?? '' ?>"                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
+                <input type="tel" name="telefone" value="<?php echo htmlspecialchars($telefone); ?>" readonly 
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500 bg-gray-100">
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Celular</label>
-                <input type="tel" name="celular" value="<?= $funcionario['celular'] ?? '' ?>"
+                <input type="tel" name="celular" value="" 
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
             </div>
@@ -276,51 +161,48 @@ if(isset($_POST['nome'])) {
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label for = "inputcep" class="block text-sm font-medium text-gray-700 mb-1">CEP</label>
-                  <input id = "inputcep" type="text" name="cep" value="<?= $funcionario['cep'] ?? '' ?>"
-                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
+                  <label for="inputcep" class="block text-sm font-medium text-gray-700 mb-1">CEP</label>
+                  <input id="inputcep" type="text" name="cep" value="" 
+                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500"
+                         placeholder="00000-000">
                 </div>
 
                 <div class="md:col-span-2">
-                  <label for ="logradouro" class="block text-sm font-medium text-gray-700 mb-1">Logradouro</label>
-                  <input id = "logradouro" type="text" name="logradouro" value="<?= $funcionario['logradouro'] ?? '' ?>" 
+                  <label for="logradouro" class="block text-sm font-medium text-gray-700 mb-1">Logradouro</label>
+                  <input id="logradouro" type="text" name="logradouro" value="" 
                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
                 </div>
 
                 <div>
-                  <label for = "numero" class="block text-sm font-medium text-gray-700 mb-1">Número</label>
-                  <input id = "numero" type="text " name="numero" value="<?= $funcionario['numero'] ?? '' ?>"
+                  <label for="numero" class="block text-sm font-medium text-gray-700 mb-1">Número</label>
+                  <input id="numero" type="text" name="numero" value="" 
                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
                 </div>
 
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">Complemento</label>
-                  <input type="text" name="complemento" value="<?= $funcionario['complemento'] ?? '' ?>"
+                  <input type="text" name="complemento" value="" 
                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
                 </div>
 
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">Bairro</label>
-                  <input id = "bairro" type="text" name="bairro" value="<?= $funcionario['bairro'] ?? '' ?>" 
+                  <input id="bairro" type="text" name="bairro" value="" 
                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
                 </div>
 
                 <div>
-                  <label for = "cidade"class="block text-sm font-medium text-gray-700 mb-1">Cidade</label>
-                  <input id = "cidade" type="text" name="cidade" value="<?= $funcionario['cidade'] ?? '' ?>"
+                  <label for="cidade" class="block text-sm font-medium text-gray-700 mb-1">Cidade</label>
+                  <input id="cidade" type="text" name="cidade" value="" 
                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
                 </div>
 
                 <div>
-                  <label for = "estado" class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
-                  <input id = "estado" type="text" name="estado" value="<?= $funcionario['estado'] ?? '' ?>" 
+                  <label for="estado" class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
+                  <input id="estado" type="text" name="estado" value="" 
                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
                 </div>
-              
               </div>
-
-
-
             </div>
           </div>
 
@@ -338,7 +220,7 @@ if(isset($_POST['nome'])) {
                 <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center">
                   <i class="fab fa-linkedin mr-2 text-blue-700"></i> LinkedIn
                 </label>
-                <input type="text" name="linkedin" value="<?= $funcionario['linkedin'] ?? '' ?>" 
+                <input type="text" name="linkedin" value="" 
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
 
@@ -346,7 +228,7 @@ if(isset($_POST['nome'])) {
                 <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center">
                   <i class="fab fa-github mr-2 text-gray-800"></i> GitHub
                 </label>
-                <input type="text" name="github" value="<?= $funcionario['github'] ?? '' ?>" 
+                <input type="text" name="github" value="" 
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
 
@@ -354,10 +236,9 @@ if(isset($_POST['nome'])) {
                 <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center">
                   <i class="fab fa-instagram mr-2 text-pink-600"></i> Instagram
                 </label>
-                <input type="text" name="instagram" value="<?= $funcionario['instagram'] ?? '' ?>"
+                <input type="text" name="instagram" value="" 
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
-
             </div>
           </div>
 
@@ -372,11 +253,11 @@ if(isset($_POST['nome'])) {
             <div class="space-y-4">
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Senha atual</label>
-
-                <input type="text" name="senha" readonly value="<?= $funcionario['senha'] ?? '' ?>" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
-                  <a href="redefinir_senha.php" class="text-sm text-primary-600 hover:underline flex items-center">
-                    <i class="fas fa-sync-alt mr-1"></i> Alterar senha
-                  </a>
+                <input type="password" name="senha" readonly value="••••••••" 
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500 bg-gray-100">
+                <a href="redefinir_senha.php" class="text-sm text-primary-600 hover:underline flex items-center mt-1">
+                  <i class="fas fa-sync-alt mr-1"></i> Alterar senha
+                </a>
               </div>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -429,16 +310,15 @@ if(isset($_POST['nome'])) {
             </div>
           </div>
 
-          <!-- Botões pra Salvar -->
+          <!-- Botões para Salvar -->
           <div class="flex justify-between mt-8">
-            <button type="reset" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
-                <?= $isEdicao ? 'Cancelar' : 'Limpar' ?>
+            <button type="button" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
+              Cancelar
+            </button>
+            <div class="space-x-4">
+              <button type="submit" class="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                <i class="fas fa-save mr-2"></i> Salvar alterações
               </button>
-              <button type="submit" class="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700">
-                <i class="fas fa-save mr-2"></i>
-                <?= $isEdicao ? 'Atualizar' : 'Salvar' ?>
-              </button>
-          </div>
             </div>
           </div>
         </form>
@@ -454,72 +334,67 @@ if(isset($_POST['nome'])) {
   </footer>
 
   <script>
-  const input = document.getElementById('imagemInput');
-  const imgPreview = document.getElementById('image-preview');
+    const input = document.getElementById('imagemInput');
+    const imgPreview = document.getElementById('image-preview');
 
-  input.addEventListener('change', function () {
-    const file = this.files[0];
+    input.addEventListener('change', function () {
+      const file = this.files[0];
 
-    if (file) {
-      const reader = new FileReader();
+      if (file) {
+        const reader = new FileReader();
 
-      reader.onload = function () {
-        imgPreview.src = reader.result;
-        imgPreview.style.display = 'block'; // mostrar a imagem
-      };
+        reader.onload = function () {
+          imgPreview.src = reader.result;
+          imgPreview.style.display = 'block';
+        };
 
-      reader.readAsDataURL(file);
-    }
-  });
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
 
-</script>
+  <script>
+    const Input_CEP = document.getElementById('inputcep');
+    const Input_logradouro = document.getElementById('logradouro');
+    const Input_numero = document.getElementById('numero');
+    const Input_bairro = document.getElementById('bairro');
+    const Input_cidade = document.getElementById('cidade');
+    const Input_estado = document.getElementById('estado');
 
-<script>
-const Input_CEP = document.getElementById('inputcep');
-const Input_logradouro = document.getElementById('logradouro');
-const Input_numero = document.getElementById('numero');
-const Input_bairro = document.getElementById('bairro');
-const Input_cidade = document.getElementById('cidade');
-const Input_estado = document.getElementById('estado');
+    Input_CEP.addEventListener('blur', () => {
+      let cep = Input_CEP.value.replace(/\D/g, '');
 
-Input_CEP.addEventListener('blur', () => {
-  let cep = Input_CEP.value.replace(/\D/g, ''); // remove tudo que não é número
-
-  if (cep.length !== 8) {
-    alert('Digite exatamente 8 dígitos no CEP');
-    return;
-  }
-
-  fetch(`https://viacep.com.br/ws/${cep}/json/`)
-    .then(resposta => resposta.json())
-    .then(json => {
-      if (json.erro) {
-        alert('CEP não encontrado');
+      if (cep.length !== 8) {
+        alert('Digite exatamente 8 dígitos no CEP');
         return;
       }
 
-      Input_logradouro.value = json.logradouro;
-      Input_bairro.value = json.bairro;
-      Input_cidade.value = json.localidade;
-      Input_estado.value = json.estado;
-      Input_numero.focus();
-    })
-    .catch(erro => {
-      console.error("Erro na requisição:", erro);
-      alert("Não foi possível buscar o endereço.");
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(resposta => resposta.json())
+        .then(json => {
+          if (json.erro) {
+            alert('CEP não encontrado');
+            return;
+          }
+
+          Input_logradouro.value = json.logradouro;
+          Input_bairro.value = json.bairro;
+          Input_cidade.value = json.localidade;
+          Input_estado.value = json.uf;
+          Input_numero.focus();
+        })
+        .catch(erro => {
+          console.error("Erro na requisição:", erro);
+          alert("Não foi possível buscar o endereço.");
+        });
     });
-});
-
-</script>
-
-
+  </script>
 
   <style>
-    #dados-pessoais , #contato , #redes-sociais , #seguranca{
+    #dados-pessoais, #contato, #redes-sociais, #seguranca {
       margin-bottom: 50px;
     }
   </style>
-
 
 </body>
 </html>
