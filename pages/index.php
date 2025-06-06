@@ -1,6 +1,6 @@
 <?php
 session_start();
-// session_destroy()
+session_destroy()
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -317,10 +317,11 @@ a {
                     <a href="#"></a>
                 <?php endif; ?>
                 </li>
-                <li><a href="#">Contato</a></li>
             </ul>
-<?php if (isset($_SESSION['usuario'])): ?>
-            <a  href="../teste/usuario.php" class="btn-header">Acessar o Perfil</a>
+
+
+            <?php if (isset($_SESSION['usuario'])): ?>
+            <a  href="usuario.php" class="btn-header">Acessar o Perfil</a>
             <?php else: ?>
                 <a  href="autenticacao/cadastro.php" class="btn-header">Cadastre-se</a>
             <?php endif;?>

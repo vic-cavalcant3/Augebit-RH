@@ -11,6 +11,18 @@ $setor = '';
 $nascimento = '';
 $cpf = '';
 $biografia = '';
+$email_secundario = '';
+$celular = '';
+$cep = '';
+$logradouro = '';
+$numero = '';
+$complemento = '';
+$bairro = '';
+$cidade = '';
+$estado = '';
+$linkedin = '';
+$github = '';
+$instagram = '';
 
 // CORREÇÃO: Verificar se o usuário está logado usando $_SESSION['usuario']
 if (!isset($_SESSION['usuario'])) {
@@ -26,7 +38,6 @@ if (!isset($conn)) {
 }
 
 try {
-    // CORREÇÃO: Pegar o ID do usuário de $_SESSION['usuario']
     $usuario_sessao = $_SESSION['usuario'];
     
     // Debug: Verificar o que tem na sessão
@@ -149,7 +160,7 @@ try {
 
       <!-- Coluna direita - Conteúdo principal -->
       <div class="lg:col-span-3 space-y-6">
-        <form method="POST" action="gravar.php">
+        <form method="POST" action = "gravar.php" >
 
           <!-- Seção: Dados Pessoais -->
           <div id="dados-pessoais" class="bg-white p-6 rounded-xl shadow-sm">
@@ -163,13 +174,13 @@ try {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Nome completo*</label>
-                <input type="text" name="nome" value="<?php echo htmlspecialchars($nome) ?>"
-                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
+                <input type="text" name="nome" value="<?php echo htmlspecialchars($nome); ?>"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500 bg-gray-100">
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">CPF*</label>
-                <input type="text" name="cpf" value="<?php echo htmlspecialchars($cpf) ?>" 
+                <input type="text" name="cpf" value="<?php echo htmlspecialchars($cpf); ?>" 
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
 
@@ -327,21 +338,10 @@ try {
             <div class="space-y-4">
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Senha atual</label>
-                <input type="password" name="senha" readonly value="••••••••" 
-                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500 bg-gray-100">
-                <a href="redefinir_senha.php" class="text-sm text-primary-600 hover:underline flex items-center mt-1">
-                  <i class="fas fa-sync-alt mr-1"></i> Alterar senha
-                </a>
-              </div>
+                <input type="password" id="senha" readonly value="••••••••"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 pr-10">
+               </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-1">Sessões ativas</label>
-                  <a href="#" class="text-sm text-primary-600 hover:underline flex items-center">
-                    <i class="fas fa-desktop mr-2"></i> 1 dispositivos ativos
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
 
