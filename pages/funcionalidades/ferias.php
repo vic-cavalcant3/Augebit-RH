@@ -1,4 +1,39 @@
-<?php include("conecta.php"); ?>
+<?php 
+include("conecta.php"); 
+
+// Processar o formulário quando enviado
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $funcionario = mysqli_real_escape_string($conexao, $_POST['funcionario']);
+    $tipo = mysqli_real_escape_string($conexao, $_POST['tipo']);
+    $inicio = mysqli_real_escape_string($conexao, $_POST['inicio']);
+    $fim = mysqli_real_escape_string($conexao, $_POST['fim']);
+    $status = mysqli_real_escape_string($conexao, $_POST['status']);
+    
+    // Validar se a data de fim é posterior à data de início
+    if (strtotime($fim) <= strtotime($inicio)) {
+        $erro = "A data de fim deve ser posterior à data de início.";
+    } else {
+        // Inserir no banco de dados
+        $sql = "INSERT INTO ferias_licencas (funcionario, tipo, inicio, fim, status, data_registro) 
+                VALUES ('$funcionario', '$tipo', '$inicio', '$fim', '$status', NOW())";
+        
+        if (mysqli_query($conexao, $sql)) {
+            $sucesso = "Solicitação registrada com sucesso!";
+        } else {
+            $erro = "Erro ao registrar solicitação: " . mysqli_error($conexao);
+        }
+    }
+}
+
+// Buscar registros para exibir na tabela
+$sql_registros = "SELECT * FROM ferias_licencas ORDER BY data_registro DESC LIMIT 20";
+$result_registros = mysqli_query($conexao, $sql_registros);
+
+// Verificar se houve erro na consulta
+if (!$result_registros) {
+    $erro = "Erro ao buscar registros: " . mysqli_error($conexao);
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -348,6 +383,19 @@
                 <p>Gerencie solicitações de férias e licenças dos funcionários</p>
             </div>
 
+            <?php if (isset($sucesso)): ?>
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    <?= $sucesso ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (isset($erro)): ?>
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <?= $erro ?>
+                </div>
+            <?php endif; ?>
 
             <div class="form-section">
                 <h2>
@@ -368,8 +416,8 @@
                             <i class="fas fa-tag"></i>
                             <select name="tipo" id="tipo" required>
                                 <option value="">Selecione o tipo</option>
-                                <option value="ferias"> Férias</option>
-                                <option value="licenca"> Licença</option>
+                                <option value="ferias">Férias</option>
+                                <option value="licenca">Licença</option>
                             </select>
                         </div>
 
@@ -389,14 +437,15 @@
                             <label for="status">Status</label>
                             <i class="fas fa-flag"></i>
                             <select name="status" id="status" required>
-                                <option value="Pendente"> Pendente</option>
-                                <option value="Aprovada"> Aprovada</option>
-                                <option value="Rejeitada"> Rejeitada</option>
+                                <option value="Pendente">Pendente</option>
+                                <option value="Aprovada">Aprovada</option>
+                                <option value="Rejeitada">Rejeitada</option>
                             </select>
                         </div>
                     </div>
 
                     <button type="submit" class="btn-submit">
+                        <i class="fas fa-save"></i>
                         Registrar Solicitação
                     </button>
                 </form>
@@ -426,7 +475,7 @@
                                         <td><?= htmlspecialchars($registro['funcionario']) ?></td>
                                         <td>
                                             <span class="tipo-badge <?= $registro['tipo'] == 'ferias' ? 'tipo-ferias' : 'tipo-licenca' ?>">
-                                                <?= $registro['tipo'] == 'ferias' ? ' Férias' : ' Licença' ?>
+                                                <?= $registro['tipo'] == 'ferias' ? 'Férias' : 'Licença' ?>
                                             </span>
                                         </td>
                                         <td><?= date('d/m/Y', strtotime($registro['inicio'])) ?></td>
@@ -436,19 +485,19 @@
                                                 <?php
                                                 switch($registro['status']) {
                                                     case 'Pendente':
-                                                        echo ' Pendente';
+                                                        echo '<i class="fas fa-clock"></i> Pendente';
                                                         break;
                                                     case 'Aprovada':
-                                                        echo ' Aprovada';
+                                                        echo '<i class="fas fa-check"></i> Aprovada';
                                                         break;
                                                     case 'Rejeitada':
-                                                        echo ' Rejeitada';
+                                                        echo '<i class="fas fa-times"></i> Rejeitada';
                                                         break;
                                                 }
                                                 ?>
                                             </span>
                                         </td>
-                                        <td><?= date('d/m/Y H:i', strtotime($registro['data_solicitacao'])) ?></td>
+                                        <td><?= date('d/m/Y H:i', strtotime($registro['data_registro'])) ?></td>
                                     </tr>
                                 <?php endwhile; ?>
                             </tbody>
@@ -499,7 +548,6 @@
 
         // Feedback visual no tipo
         document.getElementById('tipo').addEventListener('change', function() {
-            const formGroup = this.closest('.form-group');
             if (this.value === 'ferias') {
                 this.style.borderColor = '#1565c0';
             } else if (this.value === 'licenca') {
@@ -509,7 +557,6 @@
 
         // Feedback visual no status
         document.getElementById('status').addEventListener('change', function() {
-            const formGroup = this.closest('.form-group');
             switch(this.value) {
                 case 'Pendente':
                     this.style.borderColor = '#856404';
@@ -522,6 +569,11 @@
                     break;
             }
         });
+
+        // Limpar formulário após sucesso
+        <?php if (isset($sucesso)): ?>
+        document.querySelector('form').reset();
+        <?php endif; ?>
     </script>
 </body>
 </html>
