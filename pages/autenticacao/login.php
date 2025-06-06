@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($usuario && password_verify($senha, $usuario['senha'])) {
         $_SESSION['usuario'] = $usuario;
-       header("Location: ../teste/usuario");
+       header("Location: ../index.php");
     } else {
         $erro = "Credenciais inválidas!";
     }

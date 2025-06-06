@@ -1,3 +1,8 @@
+<?php
+session_start();
+// session_destroy()
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="shortcut icon" type="image/x-icon" href="../RH/img/Elemento.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/Elemento.png">
   <link rel="stylesheet" href="styles/header.css">
 </head>
 <body>
@@ -17,12 +22,17 @@
         <a href="#" class="logo"><img src="../img/Logo.png" alt="Augebit"></a>
         <nav>
             <ul>
-                <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="#">Sobre</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
+                <li><a href="cursos.php" class="active">Cursos</a></li>
+                <li><a href="biblioteca.php" >Biblioteca</a></li>
                 <li><a href="#">Contato</a></li>
-                <li><a href="biblioteca.php">Biblioteca</a></li>
             </ul>
-            <a href="./autenticacao/login.php" class="btn-header">Cadastre-se</a>
+            <?php if (isset($_SESSION['usuario'])): ?>
+            <a  href="./teste/usuario.php" class="btn-header">Acessar o Perfil</a>
+            <?php else: ?>
+                <a  href="autenticacao/cadastro.php" class="btn-header">Logar ou Cadastrar</a>
+            <?php endif;?>
         </nav>
     </div>
 </header>

@@ -115,8 +115,9 @@ $faq = [
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Central de Ajuda</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="shortcut icon" type="image/x-icon" href="../RH/img/Elemento.png">
+
 
   <style>
     body {

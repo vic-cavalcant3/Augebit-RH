@@ -1,195 +1,40 @@
 <?php
-// biblioteca.php - Biblioteca Multimídia Augebit
-?><!DOCTYPE html>
+session_start();
+// session_destroy()
+?>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Augebit - Biblioteca Multimídia</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="../RH/img/Elemento.png">
-    <link rel="stylesheet" href="styles/header.css">
-    <style>
-        /* Mantendo estilos base e variáveis */
-        :root {
-            --primary-color: #6c63ff;
-            --text-color: #2d2d2d;
-            --light-gray: #666;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    <link rel="shortcut icon" type="image/x-icon" href="../img/Elemento.png">
+    <link rel="stylesheet" href="./styles/header.css">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            color: var(--text-color);
-            background: #f8f9fa;
-        }
-
-      
-        /* Filtros */
-        .filters {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-        }
-
-        .filter-btn {
-            padding: 0.5rem 1.25rem;
-            border-radius: 50px;
-            background: #fff;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2.25rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        
-        .filter-btn:hover {
-            background-color: var(--primary-color);
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.25);
-        }
-
-        .filter-btn.active {
-            border-color: var(--primary-color);
-            background: var(--primary-color);
-            color: #fff;
-        }
-
-        /* Grid de Conteúdo */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem 0;
-        }
-
-        .resource-card {
-            background: #fff;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(108, 99, 255, 0.1);
-            border-color: var(--primary-color);
-        }
-
-        .resource-type {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-        }
-
-        .article { background: #e6f4ff; color: #1a73e8; }
-        .video { background: #fce8e6; color: #d93025; }
-        .podcast { background: #f3e8fd; color: #8a4dff; }
-        .ebook { background: #e8f5e9; color: #188038; }
-
-        .resource-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .resource-card p {
-            color: var(--light-gray);
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .resource-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary-color);
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .resource-link svg {
-            width: 18px;
-            height: 18px;
-            transition: var(--transition);
-        }
-
-        .resource-link:hover svg {
-            transform: translateX(3px);
-        }
-
-        /* Categorias */
-        .category-section {
-            margin: 4rem 0;
-        }
-
-        .category-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .category-title::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 8px;
-            height: 80%;
-            background: var(--primary-color);
-            border-radius: 4px;
-        }
-
-        /* Responsivo */
-        @media (max-width: 1500px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-            
-            .category-title {
-                font-size: 1.75rem;
-            }
-        }
-
-        .hidden {
-    display: none !important;
-}
-
-.category-section {
-    transition: opacity 0.3s ease;
-}
-    </style>
-</head>
-<body>
-<header>
+    <header>
     <div class="container">
-        <a href="#" class="logo"><img src="src/img/logo.png" alt="Augebit"></a>
+        <a href="#" class="logo"><img src="../img/Logo.png" alt="Augebit"></a>
         <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Contato</a></li>
+                <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
+                <li><a href="cursos.php">Cursos</a></li>
                 <li><a href="#" class="active">Biblioteca</a></li>
+                <li><a href="#">Contato</a></li>
             </ul>
-            <a href="../autenticacao/login.php" class="btn-header">Cadastre-se</a>
-        </nav>
+<?php if (isset($_SESSION['usuario'])): ?>
+            <a  href="./teste/usuario.php" class="btn-header">Acessar o Perfil</a>
+            <?php else: ?>
+                <a  href="autenticacao/cadastro.php" class="btn-header">Logar ou Cadastrar</a>
+            <?php endif;?>        </nav>
     </div>
 </header>
+</head>
 
-<main class="container p">
+<body>
+
+
+<main class="container_biblioteca p">
 <div class="filters">
     <button class="filter-btn active" onclick="filtrarRecursos('todos')">Todos</button>
     <button class="filter-btn" onclick="filtrarRecursos('article')">Artigos</button>
@@ -333,6 +178,181 @@
 
         });
     </script>
+
+       <style>
+        /* Mantendo estilos base e variáveis */
+        :root {
+            --primary-color: #6c63ff;
+            --text-color: #2d2d2d;
+            --light-gray: #666;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-color);
+            background: #f8f9fa;
+        }
+
+        /* CONTAINER*/
+        .container_biblioteca{
+             max-width: 1280px;
+             margin: 0 auto;
+            padding: 0 2rem;
+            align-items: center;
+        }
+
+      
+        /* Filtros */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            margin-top: 5rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            background: #fff;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.25rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        
+        .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.25);
+        }
+
+        .filter-btn.active {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        /* Grid de Conteúdo */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .resource-card {
+            background: #fff;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(108, 99, 255, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .resource-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .article { background: #e6f4ff; color: #1a73e8; }
+        .video { background: #fce8e6; color: #d93025; }
+        .podcast { background: #f3e8fd; color: #8a4dff; }
+        .ebook { background: #e8f5e9; color: #188038; }
+
+        .resource-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .resource-card p {
+            color: var(--light-gray);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .resource-link svg {
+            width: 18px;
+            height: 18px;
+            transition: var(--transition);
+        }
+
+        .resource-link:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* Categorias */
+        .category-section {
+            margin: 4rem 0;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .category-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 80%;
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 1500px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .category-title {
+                font-size: 1.75rem;
+            }
+        }
+
+        .hidden {
+    display: none !important;
+}
+
+.category-section {
+    transition: opacity 0.3s ease;
+}
+    </style>
+
+    
 </main>
 </body>
 </html>
