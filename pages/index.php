@@ -308,15 +308,21 @@ a {
         <nav>
             <ul>
                 <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
                 <li><a href="cursos.php">Cursos</a></li>
                 <li><a href="biblioteca.php">Biblioteca</a></li>
+                <li>
+                <?php if (isset($_SESSION['usuario'])): ?>
+                    <a href="funcionalidades/ponto/dashboard.php">Bater ponto</a>
+                <?php else: ?>
+                    <a href="#"></a>
+                <?php endif; ?>
+                </li>
                 <li><a href="#">Contato</a></li>
             </ul>
 <?php if (isset($_SESSION['usuario'])): ?>
-            <a  href="./teste/usuario.php" class="btn-header">Acessar o Perfil</a>
+            <a  href="../teste/usuario.php" class="btn-header">Acessar o Perfil</a>
             <?php else: ?>
-                <a  href="autenticacao/cadastro.php" class="btn-header">Logar ou Cadastrar</a>
+                <a  href="autenticacao/cadastro.php" class="btn-header">Cadastre-se</a>
             <?php endif;?>
         </nav>
     </div>
