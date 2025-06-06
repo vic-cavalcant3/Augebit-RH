@@ -3,8 +3,6 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-session_start();
-
 // Inicializa variáveis para evitar warnings
 $nome = '';
 $email = '';
@@ -14,49 +12,62 @@ $nascimento = '';
 $cpf = '';
 $biografia = '';
 
-// Verificar se o usuário está logado
-if (!isset($_SESSION['user_id'])) {
-    $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/';  // adicione a barra
-    header("Location: " . $base_url . "augebit-rh/pages/teste/usuario.php");
+// CORREÇÃO: Verificar se o usuário está logado usando $_SESSION['usuario']
+if (!isset($_SESSION['usuario'])) {
+    $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/';
+    header("Location: " . $base_url . "augebit-rh/pages/login.php"); // Redirecionar para login
     exit;
 }
 
-require 'conexao.php';
+require './autenticacao/conexao.php';
 
 if (!isset($conn)) {
     die("Erro: Não foi possível conectar ao banco de dados.");
 }
 
 try {
-    $user_id = $_SESSION['user_id'];
-    $sql = "SELECT * FROM funcionario WHERE id = ?";
-    $stmt = $conn->prepare($sql);
+    // CORREÇÃO: Pegar o ID do usuário de $_SESSION['usuario']
+    $usuario_sessao = $_SESSION['usuario'];
     
-    if (!$stmt) {
-        throw new Exception("Erro ao preparar consulta: " . $conn->error);
+    // Debug: Verificar o que tem na sessão
+    error_log("Dados da sessão: " . print_r($usuario_sessao, true));
+    
+    // Se você salvou o ID na sessão, use assim:
+    $user_id = $usuario_sessao['id'] ?? null;
+    
+    // Ou se você salvou apenas alguns dados e precisa buscar mais do banco:
+    if ($user_id) {
+        $sql = "SELECT * FROM funcionarios WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        
+        if (!$stmt) {
+            throw new Exception("Erro ao preparar consulta: " . $conn->error);
+        }
+        
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 0) {
+            echo "Usuário não encontrado! ID: " . $user_id;
+            exit;
+        }
+
+        $usuario = $result->fetch_assoc();
+        $stmt->close();
+    } else {
+        // Se não tem ID na sessão, usar os dados diretamente da sessão
+        $usuario = $usuario_sessao;
     }
-    
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
 
-    if ($result->num_rows === 0) {
-        echo "Usuário não encontrado!";
-        exit;
-    }
-
-    $usuario = $result->fetch_assoc();
-
-$nome = $usuario['nome'] ?? '';
-$email = $usuario['email'] ?? '';
-$telefone = $usuario['telefone'] ?? '';
-$setor = $usuario['setor'] ?? '';
-$nascimento = $usuario['nascimento'] ?? '';
-$cpf = $usuario['cpf'] ?? '';
-$biografia = $usuario['biografia'] ?? '';
-
-    
-    $stmt->close();
+    // Preencher as variáveis com os dados do usuário
+    $nome = $usuario['nome'] ?? '';
+    $email = $usuario['email'] ?? '';
+    $telefone = $usuario['telefone'] ?? '';
+    $setor = $usuario['setor'] ?? '';
+    $nascimento = $usuario['nascimento'] ?? '';
+    $cpf = $usuario['cpf'] ?? '';
+    $biografia = $usuario['biografia'] ?? '';
     
 } catch (Exception $e) {
     die("Erro ao buscar dados do usuário: " . $e->getMessage());
@@ -206,7 +217,7 @@ $biografia = $usuario['biografia'] ?? '';
 
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Telefone*</label>
-                <input type="tel" name="telefone" value="<?php echo htmlspecialchars($telefone); ?>" readonly 
+                <input type="tel"  name="telefone" value="<?php echo htmlspecialchars($telefone); ?>" 
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500 bg-gray-100">
               </div>
 

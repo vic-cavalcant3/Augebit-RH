@@ -320,7 +320,11 @@ a {
                 <li><a href="#">Contato</a></li>
             </ul>
 <?php if (isset($_SESSION['usuario'])): ?>
+<<<<<<< Updated upstream
             <a  href="../teste/usuario.php" class="btn-header">Acessar o Perfil</a>
+=======
+            <a  href="usuario.php" class="btn-header">Acessar o Perfil</a>
+>>>>>>> Stashed changes
             <?php else: ?>
                 <a  href="autenticacao/cadastro.php" class="btn-header">Cadastre-se</a>
             <?php endif;?>
