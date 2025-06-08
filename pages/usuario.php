@@ -27,7 +27,7 @@ $instagram = '';
 // CORREÇÃO: Verificar se o usuário está logado usando $_SESSION['usuario']
 if (!isset($_SESSION['usuario'])) {
     $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/';
-    header("Location: " . $base_url . "augebit-rh/pages/login.php"); // Redirecionar para login
+    header("Location: " . $base_url . "augebit-rh/pages/autenticacao/login.php"); // Redirecionar para login
     exit;
 }
 
@@ -72,6 +72,7 @@ try {
     }
 
     // Preencher as variáveis com os dados do usuário
+    $foto = $usuario['foto'] ?? '';
     $nome = $usuario['nome'] ?? '';
     $email = $usuario['email'] ?? '';
     $telefone = $usuario['telefone'] ?? '';
@@ -79,6 +80,19 @@ try {
     $nascimento = $usuario['nascimento'] ?? '';
     $cpf = $usuario['cpf'] ?? '';
     $biografia = $usuario['biografia'] ?? '';
+    $email_secundario = $usuario['email_secundario'] ?? '';
+    $celular = $usuario['celular'] ?? '';
+    $cep = $usuario['cep'] ?? '';
+    $logradouro = $usuario['logradouro'] ?? '';
+    $numero = $usuario['numero'] ?? '';
+    $complemento = $usuario['complemento'] ?? '';
+    $bairro = $usuario['bairro'] ?? '';
+    $cidade = $usuario['cidade'] ?? '';
+    $estado = $usuario['estado'] ?? '';
+    $linkedin = $usuario['linkedin'] ?? '';
+    $github = $usuario['github'] ?? '';
+    $instagram = $usuario['instagram'] ?? '';
+
     
 } catch (Exception $e) {
     die("Erro ao buscar dados do usuário: " . $e->getMessage());
@@ -148,19 +162,28 @@ try {
             <div class="relative mb-4">
               <img id="image-preview" src="https://via.placeholder.com/160x160?text=Foto" class="w-40 h-40 rounded-full border-4 border-primary-100 shadow-md">
             </div>
-            
-            <input type="file" name="foto" accept="image/*" class="hidden" id="imagemInput">
-            <label for="imagemInput" class="text-sm text-primary-600 hover:text-primary-700 cursor-pointer font-medium">
-              Alterar foto
-            </label>
-            <p class="text-xs text-gray-500 mt-1">Formatos: JPG, PNG (max. 2MB)</p>
+              <form method="POST" action = "gravar.php" enctype="multipart/form-data" >
+
+            <!-- EXIBE A IMAGEM SE HOUVER -->
+<?php if (!empty($foto)) : ?>
+  <img src="<?php echo $foto; ?>" alt="Foto de perfil" class="w-24 h-24 rounded-full object-cover mb-2">
+<?php endif; ?>
+
+<!-- INPUT DE IMAGEM (sempre presente) -->
+<input type="file" name="foto" accept="image/*" class="hidden" id="imagemInput">
+
+<!-- BOTÃO PARA ACIONAR O INPUT -->
+<label for="imagemInput" class="text-sm text-primary-600 hover:text-primary-700 cursor-pointer font-medium">
+  Alterar foto
+</label>
+<p class="text-xs text-gray-500 mt-1">Formatos: JPG, PNG (máx. 2MB)</p>
           </div>
         </div>
       </div>
 
       <!-- Coluna direita - Conteúdo principal -->
       <div class="lg:col-span-3 space-y-6">
-        <form method="POST" action = "gravar.php" >
+     
 
           <!-- Seção: Dados Pessoais -->
           <div id="dados-pessoais" class="bg-white p-6 rounded-xl shadow-sm">
@@ -222,7 +245,7 @@ try {
 
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">E-mail secundário</label>
-                <input type="email" name="email_secundario" value=""
+                <input type="email" name="email_secundario"value="<?php echo htmlspecialchars($email_secundario); ?>"
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
 
@@ -234,7 +257,7 @@ try {
 
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Celular</label>
-                <input type="tel" name="celular" value="" 
+                <input type="tel" name="celular" value="<?php echo htmlspecialchars($celular); ?>"
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
             </div>
@@ -247,44 +270,44 @@ try {
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label for="inputcep" class="block text-sm font-medium text-gray-700 mb-1">CEP</label>
-                  <input id="inputcep" type="text" name="cep" value="" 
+                  <input id="inputcep" type="text" name="cep" value="<?php echo htmlspecialchars($cep); ?>"
                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500"
                          placeholder="00000-000">
                 </div>
 
                 <div class="md:col-span-2">
                   <label for="logradouro" class="block text-sm font-medium text-gray-700 mb-1">Logradouro</label>
-                  <input id="logradouro" type="text" name="logradouro" value="" 
+                  <input id="logradouro" type="text" name="logradouro" value="<?php echo htmlspecialchars($logradouro); ?>" 
                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
                 </div>
 
                 <div>
                   <label for="numero" class="block text-sm font-medium text-gray-700 mb-1">Número</label>
-                  <input id="numero" type="text" name="numero" value="" 
+                  <input id="numero" type="text" name="numero" value="<?php echo htmlspecialchars($numero); ?>"
                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
                 </div>
 
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">Complemento</label>
-                  <input type="text" name="complemento" value="" 
+                  <input type="text" name="complemento" value="<?php echo htmlspecialchars($complemento); ?>"
                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
                 </div>
 
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">Bairro</label>
-                  <input id="bairro" type="text" name="bairro" value="" 
+                  <input id="bairro" type="text" name="bairro" value="<?php echo htmlspecialchars($bairro); ?>" 
                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
                 </div>
 
                 <div>
                   <label for="cidade" class="block text-sm font-medium text-gray-700 mb-1">Cidade</label>
-                  <input id="cidade" type="text" name="cidade" value="" 
+                  <input id="cidade" type="text" name="cidade" value="<?php echo htmlspecialchars($cidade); ?>"
                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
                 </div>
 
                 <div>
                   <label for="estado" class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
-                  <input id="estado" type="text" name="estado" value="" 
+                  <input id="estado" type="text" name="estado"value="<?php echo htmlspecialchars($estado); ?>"
                          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
                 </div>
               </div>
@@ -305,7 +328,7 @@ try {
                 <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center">
                   <i class="fab fa-linkedin mr-2 text-blue-700"></i> LinkedIn
                 </label>
-                <input type="text" name="linkedin" value="" 
+                <input type="text" name="linkedin" value="<?php echo htmlspecialchars($linkedin); ?>"
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
 
@@ -313,7 +336,7 @@ try {
                 <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center">
                   <i class="fab fa-github mr-2 text-gray-800"></i> GitHub
                 </label>
-                <input type="text" name="github" value="" 
+                <input type="text" name="github" value="<?php echo htmlspecialchars($github); ?>"
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
 
@@ -321,7 +344,7 @@ try {
                 <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center">
                   <i class="fab fa-instagram mr-2 text-pink-600"></i> Instagram
                 </label>
-                <input type="text" name="instagram" value="" 
+                <input type="text" name="instagram" value="<?php echo htmlspecialchars($instagram); ?>"
                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-primary-500 focus:border-primary-500">
               </div>
             </div>
@@ -338,7 +361,7 @@ try {
             <div class="space-y-4">
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Senha atual</label>
-                <input type="password" id="senha" readonly value="••••••••"
+                <input type="password" id="senha" readonly value="<?php echo htmlspecialchars($senha); ?>"
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 pr-10">
                </div>
 
