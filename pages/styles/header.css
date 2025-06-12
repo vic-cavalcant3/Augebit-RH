@@ -36,7 +36,7 @@ nav {
 nav ul { 
     display: flex; 
     gap: 2.5rem;
-    list-style: none; /* Remove os bullets da lista */
+    list-style: none; 
 }
 
 nav a { 
