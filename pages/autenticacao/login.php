@@ -1,5 +1,6 @@
 <?php
 session_start();
+// session_destroy();
 require 'conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -12,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $resultado = $stmt->get_result();
     $usuario = $resultado->fetch_assoc();
 
-    if ($usuario && password_verify($senha, $usuario['senha'])) {
+    if ($usuario && $_POST['senha'] === $usuario['senha']) {    
         $_SESSION['usuario'] = $usuario;
        header("Location: ../index.php");
     } else {

@@ -100,7 +100,7 @@ try {
     
     // Vincula os parâmetros - CORRIGIDO (21 's' para strings e 1 'i' para inteiro)
 $stmt->bind_param('sssississiisisssssssi', 
-       $foto_caminhoa,
+       $foto_caminho,
         $nome, 
         $email, 
         $telefone, 
@@ -129,7 +129,7 @@ $stmt->bind_param('sssississiisisssssssi',
     
     // Atualiza os dados na sessão
     $_SESSION['usuario'] = [
-'foto' => $foto_caminho,
+        'foto' => $foto_caminho,
         'nome' => $nome,
         'email' => $email,
         'telefone' => $telefone,

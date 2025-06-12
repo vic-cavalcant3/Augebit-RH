@@ -1,12 +1,13 @@
 <?php
 session_start();
+// session_destroy();
 require 'conexao.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+    $senha = $_POST['senha'];
     $setor = $_POST['setor'];
 
     try {

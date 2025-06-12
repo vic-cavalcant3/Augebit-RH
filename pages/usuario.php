@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Inicializa variáveis para evitar warnings
+$foto = '';
 $nome = '';
 $email = '';
 $telefone = '';
@@ -36,12 +37,7 @@ require './autenticacao/conexao.php';
 if (!isset($conn)) {
     die("Erro: Não foi possível conectar ao banco de dados.");
 }
-
-try {
-<<<<<<< Updated upstream
-=======
-    // CORREÇÃO: Pegar o ID do usuário de $_SESSION['usuario']
->>>>>>> Stashed changes
+  try {
     $usuario_sessao = $_SESSION['usuario'];
     
     // Debug: Verificar o que tem na sessão
@@ -147,7 +143,7 @@ try {
     </div>
 
     <!-- Barra -->
-    <div class="mb-8 bg-white p-4 rounded-xl shadow-sm">
+    <!-- <div class="mb-8 bg-white p-4 rounded-xl shadow-sm">
       <div class="flex justify-between mb-2">
         <span class="font-medium">Perfil 85% completo</span>
         <span class="text-primary-600">Adicione mais informações</span>
@@ -155,7 +151,7 @@ try {
       <div class="w-full bg-gray-200 rounded-full h-2.5">
         <div class="bg-primary-600 h-2.5 rounded-full" style="width: 85%"></div>
       </div>
-    </div>
+    </div> -->
 
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
       <!-- Coluna esquerda - Foto e menu -->
@@ -164,17 +160,19 @@ try {
         <div class="bg-white p-6 rounded-xl shadow-sm">
           <div class="flex flex-col items-center">
             <div class="relative mb-4">
-              <img id="image-preview" src="https://via.placeholder.com/160x160?text=Foto" class="w-40 h-40 rounded-full border-4 border-primary-100 shadow-md">
+
+            <?php if (!empty($foto)) : ?>
+              <img id="image-preview"  src="<?php echo $foto; ?>" class="w-40 h-40 rounded-full border-4 border-primary-100 shadow-md">
+            <?php endif; ?>
+              <img id="image-preview" src="https://via.placeholder.com/160x160?text=Foto" class = "w-40 h-40 rounded-full border-4 border-primary-100 shadow-md"/>
+            
+
             </div>
               <form method="POST" action = "gravar.php" enctype="multipart/form-data" >
 
-            <!-- EXIBE A IMAGEM SE HOUVER -->
-<?php if (!empty($foto)) : ?>
-  <img src="<?php echo $foto; ?>" alt="Foto de perfil" class="w-24 h-24 rounded-full object-cover mb-2">
-<?php endif; ?>
 
 <!-- INPUT DE IMAGEM (sempre presente) -->
-<input type="file" name="foto" accept="image/*" class="hidden" id="imagemInput">
+<input  type="file" name="foto" accept="image/*" class="hidden" id="imagemInput">
 
 <!-- BOTÃO PARA ACIONAR O INPUT -->
 <label for="imagemInput" class="text-sm text-primary-600 hover:text-primary-700 cursor-pointer font-medium">
@@ -355,7 +353,7 @@ try {
           </div>
 
           <!-- Seção: Segurança -->
-          <div id="seguranca" class="bg-white p-6 rounded-xl shadow-sm">
+          <!-- <div id="seguranca" class="bg-white p-6 rounded-xl shadow-sm">
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-xl font-semibold text-gray-800">
                 <i class="fas fa-lock mr-2 text-primary-600"></i> Segurança
@@ -370,7 +368,7 @@ try {
                </div>
 
             </div>
-          </div>
+          </div> -->
 
           <!-- Preferências -->
           <div id="preferencias" class="bg-white p-6 rounded-xl shadow-sm">
