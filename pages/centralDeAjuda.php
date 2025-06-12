@@ -120,6 +120,7 @@
         
       </div>
     </div>
+    
     <nav class="p-4 space-y-1 h-full overflow-y-auto pb-20">
       <a 
         href="#" 
