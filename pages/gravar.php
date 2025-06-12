@@ -3,6 +3,24 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+$foto_caminho = $_SESSION['usuario']['foto'] ?? null;
+
+if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+    $pasta_destino = './uploads(foto_perfil)/';
+    if (!is_dir($pasta_destino)) {
+        mkdir($pasta_destino, 0777, true);
+    }
+
+    $nome_arquivo = basename($_FILES['foto']['name']);
+    $caminho_temporario = $_FILES['foto']['tmp_name'];
+    $caminho_final = $pasta_destino . time() . '_' . $nome_arquivo;
+
+    if (move_uploaded_file($caminho_temporario, $caminho_final)) {
+        $foto_caminho = $caminho_final;
+    }
+}
+
+
 require './autenticacao/conexao.php';
 
 if (!isset($_SESSION['usuario'])) {
@@ -23,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $user_id = $_SESSION['usuario']['id'];
 
 // Coletar e sanitizar dados do formulário
+$foto = filter_input(INPUT_POST, 'foto', FILTER_SANITIZE_STRING);
 $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 $telefone = filter_input(INPUT_POST, 'telefone', FILTER_SANITIZE_STRING);
@@ -51,6 +70,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 try {
     // Prepara a query de atualização - CORRIGIDA
     $sql = "UPDATE funcionarios SET 
+            foto = ?,
             nome = ?, 
             email = ?, 
             telefone = ?, 
@@ -79,7 +99,8 @@ try {
     }
     
     // Vincula os parâmetros - CORRIGIDO (21 's' para strings e 1 'i' para inteiro)
-$stmt->bind_param('ssississiisisssssssi', 
+$stmt->bind_param('sssississiisisssssssi', 
+       $foto_caminhoa,
         $nome, 
         $email, 
         $telefone, 
@@ -108,6 +129,7 @@ $stmt->bind_param('ssississiisisssssssi',
     
     // Atualiza os dados na sessão
     $_SESSION['usuario'] = [
+'foto' => $foto_caminho,
         'nome' => $nome,
         'email' => $email,
         'telefone' => $telefone,
@@ -131,7 +153,7 @@ $stmt->bind_param('ssississiisisssssssi',
     ];
     
     // Redireciona com mensagem de sucesso
-    header("Location: perfil.php?success=1");
+    header("Location: index.php");
     exit;
     
 } catch (Exception $e) {

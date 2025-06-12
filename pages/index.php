@@ -1,6 +1,6 @@
 <?php
 session_start();
-session_destroy()
+// session_destroy()
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -364,6 +364,7 @@ session_destroy()
         <nav>
             <ul>
                 <li><a href="index.php" class="active">Home</a></li>
+                  <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
                 <li><a href="cursos.php">Cursos</a></li>
                 <li><a href="biblioteca.php">Biblioteca</a></li>
                 <li>
