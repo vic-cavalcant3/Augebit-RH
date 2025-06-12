@@ -24,10 +24,12 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Augebit - Histórico de Pontos</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="shortcut icon" type="image/x-icon" href="../../../img/Elemento.png">
     <style>
         * {
+            font-family: 'Poppins';
             margin: 0;
             padding: 0;
             box-sizing: border-box;

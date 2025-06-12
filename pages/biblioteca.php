@@ -7,7 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Augebit - Biblioteca Multimídia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="../img/Elemento.png">
     <link rel="stylesheet" href="./styles/header.css">
 
@@ -190,7 +190,7 @@ session_start();
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            font-family: 'Inter', sans-serif; 
+            font-family: 'Poppins'; 
             color: var(--text-color);
             background: #f8f9fa;
         }

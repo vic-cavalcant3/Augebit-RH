@@ -41,15 +41,16 @@ if (!$result_registros) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Augebit - Férias e Licenças</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
+            font-family: 'Poppins';
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: rgba(244, 244, 244, 0.95);
             min-height: 100vh;
             padding: 20px;

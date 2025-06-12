@@ -5,13 +5,12 @@
   <meta charset="UTF-8">
   <title>Avaliações - Augebit</title>
   <link rel="shortcut icon" type="image/x-icon" href="../RH/img/Elemento.png">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 
   <style>
 
-    @font-face {
-      font-family: "Poppings";
-      src: url(../src/fonts/Poppins/Poppins-Regular.ttf);
-    }
+
     :root {
       --primary: #4747D9;
       --primary-light: #4747D9;
@@ -22,7 +21,7 @@
     }
     
     * {
-      font-family: 'Poppings';
+            font-family: 'Poppins'; 
       box-sizing: border-box;
       margin: 0;
       padding: 0;

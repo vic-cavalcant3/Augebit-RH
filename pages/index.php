@@ -11,6 +11,7 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="../img/Elemento.png">
     <link rel="stylesheet" href="styles/header.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="styles/footer.css">
     <style>
         :root {
@@ -21,7 +22,7 @@ session_start();
         }
 
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins'; }
         body { 
             font-family: 'Poppins'; 
             color: var(--text-color); 

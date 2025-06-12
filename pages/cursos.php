@@ -11,7 +11,7 @@ session_start();
   <title>AUGEBIT | Bem-Estar e Palestras</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="../img/Elemento.png">
   <link rel="stylesheet" href="styles/header.css">
 </head>
@@ -150,6 +150,7 @@ session_start();
   <style>
     
     *{
+      font-family: 'Poppins'; 
       margin: 0; 
       padding: 0; 
       box-sizing: border-box;
@@ -157,7 +158,7 @@ session_start();
     body {
       background-color: #f5f5f7;
       color: #1a1a1a;
-      font-family: 'Inter', sans-serif; 
+      
     }
     .header {
       background: white;
