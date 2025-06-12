@@ -375,13 +375,9 @@ session_start();
                 <?php endif; ?>
                 </li>
             </ul>
-<<<<<<< Updated upstream
 
 
             <?php if (isset($_SESSION['usuario'])): ?>
-=======
-<?php if (isset($_SESSION['usuario'])): ?>
->>>>>>> Stashed changes
             <a  href="usuario.php" class="btn-header">Acessar o Perfil</a>
             <?php else: ?>
                 <a  href="autenticacao/cadastro.php" class="btn-header">Cadastre-se</a>
