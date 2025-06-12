@@ -38,6 +38,10 @@ if (!isset($conn)) {
 }
 
 try {
+<<<<<<< Updated upstream
+=======
+    // CORREÇÃO: Pegar o ID do usuário de $_SESSION['usuario']
+>>>>>>> Stashed changes
     $usuario_sessao = $_SESSION['usuario'];
     
     // Debug: Verificar o que tem na sessão
