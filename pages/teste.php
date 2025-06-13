@@ -102,6 +102,103 @@ session_start();
         </div>
     </section>
 
+    <!-- Nova seção de cursos -->
+<section class="category-section" data-category="cursos">
+    <h2 class="category-title">Cursos</h2>
+    <div class="content-grid">
+        <!-- Card 1 - Humor no Ambiente Corporativo -->
+        <div class="resource-card" data-type="video">
+            <div class="resource-type video">Vídeo</div>
+            <h3>Humor no Ambiente Corporativo</h3>
+            <p>Descubra como o bom humor no dia a dia da empresa melhora a colaboração e o desempenho da equipe.</p>
+            <a href="https://youtu.be/L6DFfPam2Do?si=sO67QA8rRRPjJxcA" class="resource-link">
+                Assistir
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Card 2 - Controle de Estresse no Trabalho -->
+        <div class="resource-card" data-type="video">
+            <div class="resource-type video">Vídeo</div>
+            <h3>Controle de Estresse no Trabalho</h3>
+            <p>Aprenda técnicas eficazes para reduzir o estresse e criar uma rotina mais equilibrada no ambiente corporativo.</p>
+            <a href="https://youtu.be/WUP3Fmxhm5k?si=ysw9eQ-u917sGd4m" class="resource-link">
+                Assistir
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Card 3 - Programas de Bem-Estar -->
+        <div class="resource-card" data-type="video">
+            <div class="resource-type video">Vídeo</div>
+            <h3>Participação em Programas de Bem-Estar</h3>
+            <p>Saiba como engajar os colaboradores em ações de saúde física e mental promovidas pela empresa.</p>
+            <a href="https://youtu.be/Vsi8G0sRjlU?si=ci6eRc8haHdlWa3Z" class="resource-link">
+                Assistir
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Card 5 - Inteligência Emocional -->
+        <div class="resource-card" data-type="video">
+            <div class="resource-type video">Vídeo</div>
+            <h3>Inteligência Emocional</h3>
+            <p>Desenvolva habilidades de autoconsciência e empatia para liderar e trabalhar melhor em equipe.</p>
+            <a href="https://youtu.be/mgGpIMaPAKQ?si=iHIzSeI2e-nELv8n" class="resource-link">
+                Assistir
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Card 6 - Gestão do Tempo -->
+        <div class="resource-card" data-type="video">
+            <div class="resource-type video">Vídeo</div>
+            <h3>Gestão do Tempo e Produtividade</h3>
+            <p>Aprenda a administrar o tempo de forma eficaz e maximize a produtividade no ambiente de trabalho.</p>
+            <a href="https://youtu.be/PzUZsoyMXuY?si=xnm6Qq6p5AcOqzPX" class="resource-link">
+                Assistir
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Card 7 - Comunicação Assertiva -->
+        <div class="resource-card" data-type="video">
+            <div class="resource-type video">Vídeo</div>
+            <h3>Comunicação Assertiva</h3>
+            <p>Melhore a comunicação com sua equipe e colegas com técnicas para troca de informações clara e eficiente.</p>
+            <a href="https://youtu.be/mgSGIgUjjYc?si=X0byllmv_My1cqcC" class="resource-link">
+                Assistir
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Card 8 - Liderança Positiva -->
+        <div class="resource-card" data-type="video">
+            <div class="resource-type video">Vídeo</div>
+            <h3>Liderança Positiva</h3>
+            <p>Descubra como cultivar uma liderança que inspira e motiva sua equipe para alcançar melhores resultados.</p>
+            <a href="https://youtu.be/c0FXi6gG4iU?si=0QAaYZFI5245RHqW" class="resource-link">
+                Assistir
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
     <script>
         function filtrarRecursos(tipo) {
         // Atualiza botões ativos

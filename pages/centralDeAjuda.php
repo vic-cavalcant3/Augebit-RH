@@ -102,7 +102,7 @@
     </svg>
   </button>
 
-  <!-- Sidebar Overlay (Mobile) -->
+ 
   <div 
     id="sidebar-overlay" 
     class="fixed inset-0 bg-black bg-opacity-25 z-20 sidebar-overlay hidden md:hidden"
@@ -262,7 +262,7 @@
         </a>
       <?php endforeach; ?>
 
-      <!-- Footer do Sidebar -->
+
       <div class="border-t border-gray-100 mt-6 pt-4">
         <div class="px-4 py-2 text-center">
           <p class="text-xs text-gray-500 mb-2">Precisa de mais ajuda?</p>

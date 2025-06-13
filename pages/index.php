@@ -370,7 +370,7 @@ session_start();
                 <li><a href="biblioteca.php">Biblioteca</a></li>
                 <li>
                 <?php if (isset($_SESSION['usuario'])): ?>
-                    <a href="funcionalidades/ponto/dashboard.php">Bater ponto</a>
+                    <a href="funcionalidades/ponto/registrar.php">Bater ponto</a>
                 <?php else: ?>
                     <a href="#"></a>
                 <?php endif; ?>
@@ -498,7 +498,7 @@ session_start();
             <div class="footer-links">
                 <h4>Navegar</h4>
                 <a href="index.php">Home</a>
-                <a href="#about-section">Sobre</a>
+                <a href="#about-section">Central de Ajuda</a>
                 <a href="#">Contato</a>
                 <a href="biblioteca.php">Biblioteca</a>
             </div>
