@@ -6,6 +6,7 @@
   <title>Central de Ajuda</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
+    <link rel="shortcut icon" type="image/x-icon" href="../img/Elemento.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -90,7 +91,7 @@
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
-  <!-- Mobile Menu Button -->
+  
   <button 
     onclick="toggleSidebar()" 
     class="md:hidden fixed top-4 left-4 z-50 bg-white p-3 rounded-lg shadow-lg mobile-menu-btn"
@@ -122,25 +123,7 @@
     </div>
     
     <nav class="p-4 space-y-1 h-full overflow-y-auto pb-20">
-      <a 
-        href="#" 
-        onclick="filterCategory('all')" 
-        class="sidebar-item active flex items-center justify-between px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-50 group"
-        data-category="all"
-      >
-        <div class="flex items-center">
-          <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
-            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-            </svg>
-          </div>
-          <span class="font-medium">Todas as Categorias</span>
-        </div>
-        <span class="counter-badge text-xs px-2 py-1 rounded-full text-white" id="total-count">0</span>
-      </a>
-
-      <div class="border-t border-gray-100 my-3"></div>
-
+        <div class="border-t border-gray-100 my-3"></div>
     
       <?php 
       $faq = [
@@ -294,7 +277,7 @@
     </nav>
   </aside>
 
-  <!-- Main Content -->
+  
   <div class="ml-0 md:ml-72 px-4 md:px-8 py-12 transition-all duration-300">
     <header class="text-center mb-12">
       <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8 rounded-2xl shadow-xl mb-6">
@@ -302,7 +285,7 @@
         <p class="text-indigo-100 max-w-2xl mx-auto">Todas as respostas sobre políticas e benefícios AUGEBIT</p>
       </div>
       
-      <!-- Search Bar -->
+      
       <div class="max-w-md mx-auto mb-8">
         <div class="relative">
           <input 
@@ -317,7 +300,6 @@
         </div>
       </div>
 
-      <!-- Filter Buttons -->
       <div class="flex flex-wrap justify-center gap-2 mb-8">
         <button onclick="filterCategory('all'); return false;" class="filter-btn active px-4 py-2 rounded-full bg-indigo-600 text-white font-medium">
           Todas as Categorias
@@ -371,7 +353,7 @@
       <?php endforeach; ?>
     </main>
 
-    <!-- Footer -->
+   
     <footer class="mt-16 text-center text-gray-500 text-sm border-t border-gray-200 pt-8">
       <p>Não encontrou o que procurava? <a href="mailto:rh@augebit.com" class="text-indigo-600 hover:underline">Entre em contato com o RH</a></p>
       <p class="mt-2">© <?= date('Y') ?> AUGEBIT. Todos os direitos reservados.</p>
@@ -379,7 +361,7 @@
   </div>
 
   <script>
-    // Inicializar contadores
+   
     document.addEventListener('DOMContentLoaded', function() {
       updateCounters();
     });
@@ -395,7 +377,7 @@
       document.getElementById('total-count').textContent = total;
     }
 
-    // Toggle sidebar mobile
+    // o hamburguer que abre o sidebar caso for mobile
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
       const overlay = document.getElementById('sidebar-overlay');
@@ -432,29 +414,29 @@
       }
     }
     
-    // Filtro por categoria
+    
     function filterCategory(category) {
-      // Atualizar sidebar - remover active de todos os itens
+     
       document.querySelectorAll('.sidebar-item').forEach(item => {
         item.classList.remove('active');
       });
-      // Adicionar active apenas ao item clicado
+      
       document.querySelector(`[data-category="${category}"]`).classList.add('active');
       
-      // Atualizar botões de filtro - remover active de todos
+      
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.remove('active', 'bg-indigo-600', 'text-white');
         btn.classList.add('bg-gray-200', 'text-gray-800');
       });
       
-      // Encontrar e ativar o botão correto
+    
       const targetBtn = document.querySelector(`button[onclick="filterCategory('${category}')"]`);
       if (targetBtn) {
         targetBtn.classList.add('active', 'bg-indigo-600', 'text-white');
         targetBtn.classList.remove('bg-gray-200', 'text-gray-800');
       }
       
-      // Mostrar/ocultar categorias
+     
       if (category === 'all') {
         document.querySelectorAll('.category-section').forEach(section => {
           section.classList.remove('hidden');
@@ -475,13 +457,13 @@
         }, 150);
       }
       
-      // Fechar sidebar no mobile
+      // fechar sidebar (quando for no mobile)
       if (window.innerWidth < 768) {
         closeSidebar();
       }
     }
 
-    // Busca no FAQ
+    
     function searchFAQ(query) {
       const sections = document.querySelectorAll('.category-section');
       
@@ -514,7 +496,7 @@
       });
     }
 
-    // Scroll suave para seções
+    // scroll suave 
     document.querySelectorAll('a[href^="#category-"]').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();

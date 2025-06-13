@@ -359,7 +359,7 @@ $result = $stmt->get_result();
 
             <div class="table-container">
                 <div class="table-header">
-                    <h3><i class="fas fa-table"></i> Registros de Ponto</h3>
+                    <h3><i class="fas fa-table"></i> Registros</h3>
                 </div>
                 
                 <?php if ($total_registros > 0): ?>
@@ -400,7 +400,7 @@ $result = $stmt->get_result();
                         <p>Você ainda não possui registros de ponto.<br>
                         Que tal fazer seu primeiro registro?</p>
                         <br>
-                        <a href="ponto.php" class="btn-action">
+                        <a href="registrar.php" class="btn-action">
                             <i class="fas fa-plus"></i>
                             Registrar Ponto
                         </a>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-// session_destroy();
+
 require 'conexao.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
