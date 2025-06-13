@@ -415,7 +415,7 @@ if (!isset($conn)) {
 
           <!-- Botões para Salvar -->
           <div class="flex justify-between mt-8">
-            <button type="button" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
+            <button id= "meuBotao" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
               Cancelar
             </button>
             <div class="space-x-4">
@@ -492,6 +492,19 @@ if (!isset($conn)) {
         });
     });
   </script>
+
+   <script>
+        // Seleciona o botão pelo ID
+        const botao = document.getElementById('meuBotao');
+
+        // Adiciona um evento de clique ao botão
+        botao.addEventListener('click', function() {
+            // Redireciona para a página desejada (substitua pela sua URL)
+            window.location.href = 'index.php';
+        });
+    </script>
+
+
 
   <style>
     #dados-pessoais, #contato, #redes-sociais, #seguranca {
