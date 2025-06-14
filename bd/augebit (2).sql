@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05/06/2025 às 03:04
+-- Tempo de geração: 15/06/2025 às 01:48
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -29,10 +29,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `agendamentos` (
   `id` int(11) NOT NULL,
-  `nome` varchar(255) NOT NULL,
-  `cpf` int(11) NOT NULL,
-  `horario` datetime NOT NULL
+  `nome` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cpf` varchar(255) NOT NULL,
+  `telefone` varchar(255) NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data` date NOT NULL,
+  `horario` time NOT NULL,
+  `profissional` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `agendamentos`
+--
+
+INSERT INTO `agendamentos` (`id`, `nome`, `cpf`, `telefone`, `email`, `data`, `horario`, `profissional`) VALUES
+(1, 'Victor Rodrigues', '2147483647', '2147483647', 'victorrocha0223@gmail.com', '2025-07-25', '11:50:00', 'Dr. Pedro Costa'),
+(2, 'crist', '2147483647', '2147483647', 'victorrocha0223@gmail.com', '2025-07-16', '17:00:00', 'Dr. João Silva');
 
 -- --------------------------------------------------------
 
@@ -79,29 +91,6 @@ INSERT INTO `comentarios` (`id`, `nome`, `comentario`, `usabilidade`, `produtivi
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `ferias`
---
-
-CREATE TABLE `ferias` (
-  `id` int(11) NOT NULL,
-  `funcionario` varchar(100) DEFAULT NULL,
-  `inicio` date DEFAULT NULL,
-  `fim` date DEFAULT NULL,
-  `status` enum('Aprovada','Pendente','Rejeitada') DEFAULT NULL,
-  `data_registro` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `ferias`
---
-
-INSERT INTO `ferias` (`id`, `funcionario`, `inicio`, `fim`, `status`, `data_registro`) VALUES
-(1, 'Joao', '2025-05-12', '2025-05-15', 'Aprovada', '2025-05-23 14:55:44'),
-(2, 'Jeff', '2025-05-23', '2026-05-23', 'Aprovada', '2025-05-23 18:04:24');
-
--- --------------------------------------------------------
-
---
 -- Estrutura para tabela `folha_pagamento`
 --
 
@@ -131,19 +120,20 @@ INSERT INTO `folha_pagamento` (`id`, `funcionario`, `mes_referencia`, `salario_b
 
 CREATE TABLE `funcionarios` (
   `id` int(11) NOT NULL,
+  `foto` varchar(255) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `telefone` int(11) NOT NULL,
+  `telefone` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `setor` varchar(255) NOT NULL,
-  `cpf` int(12) NOT NULL,
+  `cpf` varchar(255) NOT NULL,
   `nascimento` date NOT NULL,
   `biografia` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_secundario` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `celular` int(20) NOT NULL,
-  `cep` int(8) NOT NULL,
-  `logadouro` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `numero` int(11) NOT NULL,
+  `celular` varchar(255) NOT NULL,
+  `cep` varchar(255) NOT NULL,
+  `logradouro` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `numero` varchar(255) NOT NULL,
   `complemento` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `bairro` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `cidade` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -157,8 +147,10 @@ CREATE TABLE `funcionarios` (
 -- Despejando dados para a tabela `funcionarios`
 --
 
-INSERT INTO `funcionarios` (`id`, `nome`, `email`, `telefone`, `senha`, `setor`, `cpf`, `nascimento`, `biografia`, `email_secundario`, `celular`, `cep`, `logadouro`, `numero`, `complemento`, `bairro`, `cidade`, `estado`, `linkedin`, `github`, `instagram`) VALUES
-(12, ' Victor Rodrigues Cavalcante Rocha', 'victorrocha0223@gmail.com', 2147483647, '$2y$10$DhcU00DljWZbccJj7uBXeeP1sZKx5oWxA1W/2AhwbCHcIkwpL1zVW', 'TI', 0, '0000-00-00', '', '', 0, 0, '', 0, '', '', '', '', '', '', '');
+INSERT INTO `funcionarios` (`id`, `foto`, `nome`, `email`, `telefone`, `senha`, `setor`, `cpf`, `nascimento`, `biografia`, `email_secundario`, `celular`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `cidade`, `estado`, `linkedin`, `github`, `instagram`) VALUES
+(20, '', 'Victor Rodrigues Cavalcante Rocha', 'victorrocha0223@gmail.com', '111945786', '2512', 'RH', '2147483647', '2007-12-25', 'amo pipoca', 'viccvalcantesenai@gmail.com', '2147483647', '8505340', 'Rua Antônio Massa', '178', 'casa', 'Jardim do Papai', 'Ferraz de Vasconcelos', 'SP', 'vic-cavalcant3', 'vic-cavalcant3', 'viccavalcant3'),
+(21, '', 'vic', 'victorrocha0223@gmail.com', '2147483647', '12345', 'Marketing', '0', '0000-00-00', '', '', '0', '0', '', '0', '', '', '', '', '', '', ''),
+(22, '', 'victor', 'victorrocha0223@gmail.com', '2147483647', '2512', 'Administrativo', '0', '0000-00-00', '', '', '0', '0', '', '0', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -241,12 +233,6 @@ ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `ferias`
---
-ALTER TABLE `ferias`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Índices de tabela `folha_pagamento`
 --
 ALTER TABLE `folha_pagamento`
@@ -279,7 +265,7 @@ ALTER TABLE `recrutamento`
 -- AUTO_INCREMENT de tabela `agendamentos`
 --
 ALTER TABLE `agendamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `clientes`
@@ -294,12 +280,6 @@ ALTER TABLE `comentarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de tabela `ferias`
---
-ALTER TABLE `ferias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT de tabela `folha_pagamento`
 --
 ALTER TABLE `folha_pagamento`
@@ -309,13 +289,13 @@ ALTER TABLE `folha_pagamento`
 -- AUTO_INCREMENT de tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de tabela `pontos`
 --
 ALTER TABLE `pontos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `recrutamento`

@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Central de Ajuda</title>
+   <title>Augebit </title>
   <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="shortcut icon" type="image/x-icon" href="../img/Elemento.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" type="image/x-icon" href="../img/Elemento.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Poppins';
@@ -80,6 +79,17 @@
     .counter-badge {
       background: linear-gradient(135deg, #6366f1, #8b5cf6);
     }
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background-color: #f3f4f6;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+    .back-button:hover {
+      background-color: #e5e7eb;
+    }
     @media (max-width: 768px) {
       .sidebar {
         transform: translateX(-100%);
@@ -102,29 +112,43 @@
     </svg>
   </button>
 
- 
   <div 
     id="sidebar-overlay" 
     class="fixed inset-0 bg-black bg-opacity-25 z-20 sidebar-overlay hidden md:hidden"
     onclick="closeSidebar()"
   ></div>
 
- 
   <aside id="sidebar" class="fixed top-0 left-0 h-full w-72 bg-white shadow-xl z-30 sidebar">
-  
     <div class="p-6 border-b border-gray-100 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
       <div class="flex items-center justify-between">
         <div>
           <h2 class="text-2xl font-bold">RH AUGEBIT</h2>
           <p class="text-indigo-100 text-sm mt-1">Central de Ajuda</p>
         </div>
-        
       </div>
     </div>
     
     <nav class="p-4 space-y-1 h-full overflow-y-auto pb-20">
-        <div class="border-t border-gray-100 my-3"></div>
-    
+      <div class="border-t border-gray-100 my-3"></div>
+      
+      <!-- Link para mostrar todas as categorias -->
+      <a 
+        href="#" 
+        onclick="showAllCategories(); return false;" 
+        class="sidebar-item flex items-center justify-between px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-50 group active"
+        id="all-categories-link"
+      >
+        <div class="flex items-center">
+          <div class="w-8 h-8 bg-gray-100 group-hover:bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+            <svg class="w-4 h-4 text-gray-600 group-hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v18m6-18v18"></path>
+            </svg>
+          </div>
+          <span class="font-medium group-hover:text-gray-900">Todas as Categorias</span>
+        </div>
+      </a>
+
       <?php 
       $faq = [
         "Férias" => [
@@ -230,6 +254,34 @@
             "pergunta" => "A empresa oferece auxílio para pós-graduação?",
             "resposta" => "Sim, temos parcerias com instituições e reembolsamos 50% do valor após conclusão, desde que relacionado à sua área."
           ]
+        ],
+        "Admissão e Documentação" => [
+          [
+            "pergunta" => "Quais documentos são necessários para admissão?",
+            "resposta" => "RG, CPF, Título de Eleitor, Reservista (se aplicável), PIS, Carteira de Trabalho, Comprovante de Endereço e Diploma Profissional."
+          ],
+          [
+            "pergunta" => "Como solicitar segunda via de contracheque?",
+            "resposta" => "Acesse o Portal do Colaborador > Documentos > Contracheques. Disponível até 5 anos após a emissão."
+          ],
+          [
+            "pergunta" => "Como atualizar meus dados cadastrais?",
+            "resposta" => "Portal do Colaborador > Meus Dados > Atualização Cadastral. Dados bancários exigem confirmação com documento."
+          ]
+        ],
+        "Desligamento" => [
+          [
+            "pergunta" => "Qual o prazo para aviso prévio?",
+            "resposta" => "30 dias para colaboradores com até 1 ano de empresa. Acima disso, aumenta 3 dias por ano completo trabalhado."
+          ],
+          [
+            "pergunta" => "Como funciona o acerto de contas?",
+            "resposta" => "Realizado em até 10 dias úteis após o desligamento, incluindo férias proporcionais, 13º proporcional e verbas rescisórias."
+          ],
+          [
+            "pergunta" => "Posso ser recontratado após desligamento?",
+            "resposta" => "Sim, após 6 meses do desligamento, exceto em casos de justa causa."
+          ]
         ]
       ];
 
@@ -237,7 +289,9 @@
         "Férias" => "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z",
         "Benefícios" => "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
         "Políticas Internas" => "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
-        "Carreira e Desenvolvimento" => "M13 10V3L4 14h7v7l9-11h-7z"
+        "Carreira e Desenvolvimento" => "M13 10V3L4 14h7v7l9-11h-7z",
+        "Admissão e Documentação" => "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2",
+        "Desligamento" => "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
       ];
 
       foreach ($faq as $categoria => $perguntas): 
@@ -262,7 +316,6 @@
         </a>
       <?php endforeach; ?>
 
-
       <div class="border-t border-gray-100 mt-6 pt-4">
         <div class="px-4 py-2 text-center">
           <p class="text-xs text-gray-500 mb-2">Precisa de mais ajuda?</p>
@@ -277,47 +330,43 @@
     </nav>
   </aside>
 
-  
   <div class="ml-0 md:ml-72 px-4 md:px-8 py-12 transition-all duration-300">
-    <header class="text-center mb-12">
-      <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8 rounded-2xl shadow-xl mb-6">
-        <h1 class="text-3xl md:text-4xl font-bold mb-3">Central de Ajuda RH</h1>
-        <p class="text-indigo-100 max-w-2xl mx-auto">Todas as respostas sobre políticas e benefícios AUGEBIT</p>
-      </div>
-      
-      
-      <div class="max-w-md mx-auto mb-8">
-        <div class="relative">
-          <input 
-            type="text" 
-            placeholder="Buscar perguntas..." 
-            class="w-full px-4 py-3 pl-12 rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            onkeyup="searchFAQ(this.value)"
-          >
-          <svg class="absolute left-4 top-3.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-        </div>
-      </div>
+    <!-- Botão de voltar -->
+    <div class="mb-6">
+      <a href="index.php" class="back-button text-gray-700 hover:text-gray-900">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Voltar para tela inicial
+      </a>
+    </div>
 
-      <div class="flex flex-wrap justify-center gap-2 mb-8">
-        <button onclick="filterCategory('all'); return false;" class="filter-btn active px-4 py-2 rounded-full bg-indigo-600 text-white font-medium">
-          Todas as Categorias
-        </button>
-        <?php foreach (array_keys($faq) as $categoria): ?>
-          <button onclick="filterCategory('<?= strtolower(str_replace(' ', '-', $categoria)) ?>'); return false;" class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-800 font-medium hover:bg-gray-300">
-            <?= $categoria ?>
-          </button>
-        <?php endforeach; ?>
-      </div>
-    </header>
-
-    <!-- FAQ Content -->
     <main>
+      <!-- Seção de todas as categorias (visível por padrão) -->
+      <section id="all-categories" class="mb-10">
+        <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-6">Todas as Perguntas Frequentes</h2>
+        
+        <div class="space-y-4">
+          <?php foreach ($faq as $categoria => $perguntas): ?>
+            <div class="bg-white rounded-xl shadow-sm p-6">
+              <h3 class="text-lg font-semibold text-indigo-600 mb-4"><?= $categoria ?></h3>
+              <div class="space-y-3">
+                <?php foreach ($perguntas as $index => $item): ?>
+                  <div class="pl-4 border-l-2 border-indigo-200">
+                    <p class="font-medium text-gray-800"><?= $item['pergunta'] ?></p>
+                  </div>
+                <?php endforeach; ?>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      </section>
+
+      <!-- Seções individuais de cada categoria (ocultas por padrão) -->
       <?php foreach ($faq as $categoria => $perguntas): 
         $categoriaId = strtolower(str_replace(' ', '-', $categoria));
       ?>
-        <section id="category-<?= $categoriaId ?>" class="category-section mb-10">
+        <section id="category-<?= $categoriaId ?>" class="category-section mb-10 hidden">
           <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-6 flex items-center">
             <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
               <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -353,7 +402,6 @@
       <?php endforeach; ?>
     </main>
 
-   
     <footer class="mt-16 text-center text-gray-500 text-sm border-t border-gray-200 pt-8">
       <p>Não encontrou o que procurava? <a href="mailto:rh@augebit.com" class="text-indigo-600 hover:underline">Entre em contato com o RH</a></p>
       <p class="mt-2">© <?= date('Y') ?> AUGEBIT. Todos os direitos reservados.</p>
@@ -361,23 +409,27 @@
   </div>
 
   <script>
-   
     document.addEventListener('DOMContentLoaded', function() {
-      updateCounters();
+      // Mostrar todas as categorias por padrão
+      showAllCategories();
     });
 
-    function updateCounters() {
-      const categories = <?= json_encode($faq) ?>;
-      let total = 0;
+    function showAllCategories() {
+      // Mostrar seção "Todas as Categorias"
+      document.getElementById('all-categories').style.display = 'block';
       
-      Object.keys(categories).forEach(category => {
-        total += categories[category].length;
+      // Ocultar todas as seções individuais
+      document.querySelectorAll('.category-section').forEach(section => {
+        section.classList.add('hidden');
       });
       
-      document.getElementById('total-count').textContent = total;
+      // Ativar link "Todas as Categorias" no sidebar
+      document.querySelectorAll('.sidebar-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      document.getElementById('all-categories-link').classList.add('active');
     }
 
-    // o hamburguer que abre o sidebar caso for mobile
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
       const overlay = document.getElementById('sidebar-overlay');
@@ -398,7 +450,6 @@
       btn.classList.remove('active');
     }
 
-    // Alternar respostas
     function toggleAnswer(id) {
       const elem = document.getElementById(id);
       const icon = document.getElementById(`icon-${id}`);
@@ -414,101 +465,48 @@
       }
     }
     
-    
     function filterCategory(category) {
-     
+      // Ocultar a seção "Todas as Categorias"
+      document.getElementById('all-categories').style.display = 'none';
+      
+      // Ativar item do sidebar correspondente
       document.querySelectorAll('.sidebar-item').forEach(item => {
         item.classList.remove('active');
       });
       
-      document.querySelector(`[data-category="${category}"]`).classList.add('active');
-      
-      
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('active', 'bg-indigo-600', 'text-white');
-        btn.classList.add('bg-gray-200', 'text-gray-800');
-      });
-      
-    
-      const targetBtn = document.querySelector(`button[onclick="filterCategory('${category}')"]`);
-      if (targetBtn) {
-        targetBtn.classList.add('active', 'bg-indigo-600', 'text-white');
-        targetBtn.classList.remove('bg-gray-200', 'text-gray-800');
-      }
-      
-     
       if (category === 'all') {
-        document.querySelectorAll('.category-section').forEach(section => {
-          section.classList.remove('hidden');
-          section.style.opacity = '1';
-        });
+        showAllCategories();
+        document.getElementById('all-categories-link').classList.add('active');
       } else {
+        document.querySelector(`[data-category="${category}"]`).classList.add('active');
+        
+        // Ocultar todas as seções
         document.querySelectorAll('.category-section').forEach(section => {
-          section.style.opacity = '0';
-          setTimeout(() => {
-            section.classList.add('hidden');
-          }, 150);
+          section.classList.add('hidden');
         });
         
-        setTimeout(() => {
-          const targetSection = document.getElementById(`category-${category}`);
-          targetSection.classList.remove('hidden');
-          targetSection.style.opacity = '1';
-        }, 150);
+        // Mostrar apenas a seção selecionada
+        const targetSection = document.getElementById(`category-${category}`);
+        targetSection.classList.remove('hidden');
       }
       
-      // fechar sidebar (quando for no mobile)
+      // Fechar sidebar no mobile
       if (window.innerWidth < 768) {
         closeSidebar();
       }
-    }
-
-    
-    function searchFAQ(query) {
-      const sections = document.querySelectorAll('.category-section');
       
-      if (query.length < 2) {
-        sections.forEach(section => {
-          section.style.display = 'block';
-          section.querySelectorAll('.faq-item').forEach(item => {
-            item.style.display = 'block';
-          });
-        });
-        return;
-      }
-      
-      sections.forEach(section => {
-        let hasVisibleItems = false;
-        
-        section.querySelectorAll('.faq-item').forEach(item => {
-          const question = item.querySelector('.faq-question span').textContent.toLowerCase();
-          const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
-          
-          if (question.includes(query.toLowerCase()) || answer.includes(query.toLowerCase())) {
-            item.style.display = 'block';
-            hasVisibleItems = true;
-          } else {
-            item.style.display = 'none';
-          }
-        });
-        
-        section.style.display = hasVisibleItems ? 'block' : 'none';
-      });
-    }
-
-    // scroll suave 
-    document.querySelectorAll('a[href^="#category-"]').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+      // Rolagem suave para a seção
+      if (category !== 'all') {
+        const target = document.getElementById(`category-${category}`);
         if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
         }
-      });
-    });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
   </script>
 </body>
 </html>

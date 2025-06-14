@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Augebit</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../../img/Elemento.png">
+ <title>Augebit </title>
+     <link rel="shortcut icon" type="image/x-icon" href="../../img/Elemento.png">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {

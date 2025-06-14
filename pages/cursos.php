@@ -7,8 +7,8 @@ session_start();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AUGEBIT | Bem-Estar e Palestras</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+ <title>Augebit </title>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="../img/Elemento.png">
@@ -19,18 +19,26 @@ session_start();
   <header>
     <div class="container">
         <a href="#" class="logo"><img src="../img/Logo.png" alt="Augebit"></a>
-        <nav>
+       <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
-                <li><a href="cursos.php" class="active">Cursos</a></li>
-                <li><a href="biblioteca.php" >Biblioteca</a></li>
-                <li><a href="#">Contato</a></li>
+                  <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
+                <li><a href="cursos.php"  class="active" >Cursos</a></li>
+                <li><a href="biblioteca.php">Biblioteca</a></li>
+                <li>
+                <?php if (isset($_SESSION['usuario'])): ?>
+                    <a href="funcionalidades/ponto/registrar.php">Bater ponto</a>
+                <?php else: ?>
+                    <a href="#"></a>
+                <?php endif; ?>
+                </li>
             </ul>
+
+
             <?php if (isset($_SESSION['usuario'])): ?>
-            <a  href="./teste/usuario.php" class="btn-header">Acessar o Perfil</a>
+            <a  href="usuario.php" class="btn-header">Acessar o Perfil</a>
             <?php else: ?>
-                <a  href="autenticacao/cadastro.php" class="btn-header">Logar ou Cadastrar</a>
+                <a  href="autenticacao/cadastro.php" class="btn-header">Cadastre-se</a>
             <?php endif;?>
         </nav>
     </div>

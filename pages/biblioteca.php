@@ -6,27 +6,36 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Augebit - Biblioteca Multimídia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ <title>Augebit </title>
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="../img/Elemento.png">
     <link rel="stylesheet" href="./styles/header.css">
 
     <header>
     <div class="container">
         <a href="#" class="logo"><img src="../img/Logo.png" alt="Augebit"></a>
-        <nav>
+         <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
-                <li><a href="cursos.php">Cursos</a></li>
-                <li><a href="#" class="active">Biblioteca</a></li>
-                <li><a href="#">Contato</a></li>
+                  <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
+                <li><a href="cursos.php"   >Cursos</a></li>
+                <li><a href="biblioteca.php" class="active" >Biblioteca</a></li>
+                <li>
+                <?php if (isset($_SESSION['usuario'])): ?>
+                    <a href="funcionalidades/ponto/registrar.php">Bater ponto</a>
+                <?php else: ?>
+                    <a href="#"></a>
+                <?php endif; ?>
+                </li>
             </ul>
-<?php if (isset($_SESSION['usuario'])): ?>
-            <a  href="./teste/usuario.php" class="btn-header">Acessar o Perfil</a>
+
+
+            <?php if (isset($_SESSION['usuario'])): ?>
+            <a  href="usuario.php" class="btn-header">Acessar o Perfil</a>
             <?php else: ?>
-                <a  href="autenticacao/cadastro.php" class="btn-header">Logar ou Cadastrar</a>
-            <?php endif;?>        </nav>
+                <a  href="autenticacao/cadastro.php" class="btn-header">Cadastre-se</a>
+            <?php endif;?>
+        </nav>
     </div>
 </header>
 </head>

@@ -151,8 +151,11 @@ $stmt->bind_param('sssississiisisssssssi',
         'instagram' => $instagram,
         'id' => $user_id
     ];
+
+     $_SESSION['mensagem'] = "Dados enviados com sucesso!";
     
     // Redireciona com mensagem de sucesso
+    echo '<script>alert("Dados enviados com sucesso!");</script>';
     header("Location: index.php");
     exit;
     

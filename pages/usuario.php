@@ -93,6 +93,10 @@ if (!isset($conn)) {
     $github = $usuario['github'] ?? '';
     $instagram = $usuario['instagram'] ?? '';
 
+    if (isset($_SESSION['mensagem'])) {
+    echo '<script>alert("'.$_SESSION['mensagem'].'");</script>';
+    unset($_SESSION['mensagem']); // Remove a mensagem após exibir
+}
     
 } catch (Exception $e) {
     die("Erro ao buscar dados do usuário: " . $e->getMessage());
@@ -105,7 +109,7 @@ if (!isset($conn)) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Perfil - AUGEBIT</title>
+  <title>Meu perfil - Augebit </title>
   <script src="https://cdn.tailwindcss.com"></script>
      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   

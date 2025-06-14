@@ -1,11 +1,12 @@
 :root {
-            --primary-color: #6c63ff;
-            --text-color: #2d2d2d;
-            --light-gray: #666;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    --primary-color: #6c63ff;
+    --text-color: #2d2d2d;
+    --light-gray: #666;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 header { 
-    padding: 1.5rem 0;
+    padding: 1.2rem 0; /* Reduzi um pouco o padding */
     position: sticky;
     top: 0;
     background: rgba(255, 255, 255, 0.605);
@@ -23,29 +24,33 @@ header {
 }
 
 .logo img { 
-    height: 45px;
+    height: 40px; /* Reduzi um pouco a logo */
+    width: auto; /* Garante proporção */
 }
 
 nav {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem; /* Reduzi o gap */
     flex-direction: row;
 }
 
 nav ul { 
     display: flex; 
-    gap: 2.5rem;
+    gap: 1.8rem; /* Reduzi o gap entre itens */
     list-style: none; 
+    margin: 0;
+    padding: 0;
 }
 
 nav a { 
     color: black;
     font-weight: 500; 
+    font-size: 0.9rem; /* Reduzi o tamanho da fonte */
     position: relative;
-    padding: 0.5rem 0;
+    padding: 0.4rem 0; /* Ajuste de padding */
     transition: var(--transition);
-    text-decoration: none; /* Remove o sublinhado padrão dos links */
+    text-decoration: none;
 }
 
 nav ul li a::after {
@@ -67,15 +72,15 @@ nav ul li a.active::after {
 .btn-header {
     display: inline-flex;
     align-items: center;
-    padding: 0.75rem 1.75rem;
-    font-size: 0.9375rem;
+    padding: 0.6rem 1.5rem; /* Reduzi o padding */
+    font-size: 0.85rem; /* Reduzi o tamanho da fonte */
     font-weight: 600;
     border: 2px solid var(--primary-color);
     border-radius: 50px;
     color: var(--primary-color);
     transition: var(--transition);
-    margin-left: 2rem;
-    text-decoration: none; /* Remove o sublinhado do botão */
+    margin-left: 1.5rem; /* Reduzi a margem */
+    text-decoration: none;
 }
 
 .btn-header:hover {
@@ -85,27 +90,45 @@ nav ul li a.active::after {
     box-shadow: 0 4px 12px rgba(108, 99, 255, 0.25);
 }
 
-/* Responsividade */
+/* Responsividade melhorada */
+@media (max-width: 1200px) {
+    nav ul {
+        gap: 1.5rem;
+    }
+}
+
 @media (max-width: 1024px) {
     .container {
         padding: 0 1.5rem;
     }
 
     nav ul {
-        gap: 1.5rem;
+        gap: 1.2rem;
+    }
+
+    nav a {
+        font-size: 0.85rem;
     }
 
     .btn-header {
-        margin-left: 1.5rem;
-        padding: 0.625rem 1.5rem;
+        margin-left: 1.2rem;
+        padding: 0.5rem 1.2rem;
     }
 }
 
 @media (max-width: 768px) {
+    header {
+        padding: 1rem 0;
+    }
+    
+    .logo img {
+        height: 36px;
+    }
+    
     nav ul {
         gap: 1rem;
     }
-
+    
     .btn-header {
         display: none;
     }
@@ -114,5 +137,31 @@ nav ul li a.active::after {
 @media (max-width: 640px) {
     .container {
         padding: 0 1rem;
+    }
+    
+    nav {
+        gap: 1rem;
+    }
+    
+    nav ul {
+        gap: 0.8rem;
+    }
+    
+    nav a {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        height: 32px;
+    }
+    
+    nav ul {
+        gap: 0.6rem;
+    }
+    
+    nav a {
+        font-size: 0.6rem;
     }
 }
