@@ -19,6 +19,7 @@ session_start();
             --text-color: #2d2d2d;
             --light-gray: #666;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --primary-dark: #5a52d5;
         }
 
         
@@ -355,7 +356,29 @@ session_start();
             height: 4rem;
         }
     }
-    
+      .stats-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
@@ -398,6 +421,26 @@ session_start();
             </div>
         </section>
 
+<section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>150+</h3>
+                    <p>Projetos Entregues</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Clientes Satisfeitos</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Taxa de Aprovação</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5+</h3>
+                    <p>Anos de Experiência</p>
+                </div>
+        </div>
+    </section>
 
 <section class="services-section">
   <div class="container services-container">
@@ -462,11 +505,6 @@ session_start();
         </div>
     </div>
 </section>
-
-
-
-
-
 
     </main>
    <footer class="footer">
