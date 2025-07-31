@@ -22,12 +22,12 @@ session_start();
        <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                  <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
                 <li><a href="cursos.php"  class="active" >Cursos</a></li>
                 <li><a href="biblioteca.php">Biblioteca</a></li>
+                <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
                 <li>
                 <?php if (isset($_SESSION['usuario'])): ?>
-                    <a href="funcionalidades/ponto/registrar.php">Bater ponto</a>
+                    <a href="funcionalidades/ponto/registrar.php">Area do Funcionario</a>
                 <?php else: ?>
                     <a href="#"></a>
                 <?php endif; ?>
@@ -44,15 +44,13 @@ session_start();
     </div>
 </header>
 
-  <!-- Hero -->
   <section class="hero">
     <h1>Palestras e Cursos sobre Bem-Estar</h1>
     <p>Transforme o ambiente de trabalho com conteúdos sobre <span class="highlight">humor, controle do estresse</span> e participação ativa em <span class="highlight">programas de bem-estar</span>.</p>
   </section>
 
-<!-- Cards -->
 <section class="cards">
-  <!-- Card 1 - Humor no Ambiente Corporativo -->
+  
   <div class="card">
     <div class="card-icon">
       <i class="fas fa-laugh-squint"></i>
@@ -64,7 +62,6 @@ session_start();
     </a>
   </div>
 
-  <!-- Card 2 - Controle de Estresse no Trabalho -->
   <div class="card">
     <div class="card-icon">
       <i class="fas fa-heartbeat"></i>
@@ -76,7 +73,6 @@ session_start();
     </a>
   </div>
 
-  <!-- Card 3 - Programas de Bem-Estar -->
   <div class="card">
     <div class="card-icon">
       <i class="fas fa-hands-helping"></i>
@@ -88,7 +84,6 @@ session_start();
     </a>
   </div>
 
-  <!-- Card 4 - Mindfulness e Meditação -->
   <div class="card">
     <div class="card-icon">
       <i class="fas fa-spa"></i>
@@ -100,7 +95,6 @@ session_start();
     </a>
   </div>
 
-  <!-- Card 5 - Inteligência Emocional -->
   <div class="card">
     <div class="card-icon">
       <i class="fas fa-brain"></i>
@@ -112,7 +106,6 @@ session_start();
     </a>
   </div>
 
-  <!-- Card 6 - Gestão do Tempo -->
   <div class="card">
     <div class="card-icon">
       <i class="fas fa-clock"></i>
@@ -124,7 +117,6 @@ session_start();
     </a>
   </div>
 
-  <!-- Card 7 - Comunicação Assertiva -->
   <div class="card">
     <div class="card-icon">
       <i class="fas fa-comments"></i>
@@ -136,7 +128,6 @@ session_start();
     </a>
   </div>
 
-  <!-- Card 8 - Liderança Positiva -->
   <div class="card">
     <div class="card-icon">
       <i class="fas fa-users"></i>
@@ -149,7 +140,6 @@ session_start();
   </div>
 </section>
 
-  <!-- Footer -->
   <footer class="footer">
     © 2025 AUGEBIT. Todos os direitos reservados.
   </footer>
