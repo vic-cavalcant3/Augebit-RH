@@ -286,7 +286,7 @@ $usuario = $_SESSION['usuario'];
         </form>
 
         <div class="footer-links">
-            <a href="./ferias.php">
+            <a href="ferias.php">
                 <i class="fas fa-home"></i>
                 Férias
             </a>

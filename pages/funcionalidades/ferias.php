@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $erro = "A data de fim deve ser posterior à data de início.";
     } else {
         // Inserir no banco de dados
-        $sql = "INSERT INTO ferias_licencas (funcionario, tipo, inicio, fim, status, data_registro) 
+        $sql = "INSERT INTO ferias (funcionario, tipo, inicio, fim, status, data_registro) 
                 VALUES ('$funcionario', '$tipo', '$inicio', '$fim', '$status', NOW())";
         
         if (mysqli_query($conexao, $sql)) {
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Buscar registros para exibir na tabela
-$sql_registros = "SELECT * FROM ferias_licencas ORDER BY data_registro DESC LIMIT 20";
+$sql_registros = "SELECT * FROM ferias ORDER BY data_registro DESC LIMIT 20";
 $result_registros = mysqli_query($conexao, $sql_registros);
 
 // Verificar se houve erro na consulta
@@ -39,7 +39,7 @@ if (!$result_registros) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Augebit - Férias e Licenças</title>
+    <title>Férias e Licenças</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -434,16 +434,6 @@ if (!$result_registros) {
                             <input type="date" name="fim" id="fim" required>
                         </div>
 
-                        <div class="form-group">
-                            <label for="status">Status</label>
-                            <i class="fas fa-flag"></i>
-                            <select name="status" id="status" required>
-                                <option value="Pendente">Pendente</option>
-                                <option value="Aprovada">Aprovada</option>
-                                <option value="Rejeitada">Rejeitada</option>
-                            </select>
-                        </div>
-                    </div>
 
                     <button type="submit" class="btn-submit">
                         <i class="fas fa-save"></i>
