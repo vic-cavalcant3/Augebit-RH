@@ -294,7 +294,7 @@ $usuario = $_SESSION['usuario'];
                 <i class="fas fa-history"></i>
                 Histórico
             </a>
-            <a href="logout.php">
+            <a href="../../index.php">
                 <i class="fas fa-sign-out-alt"></i>
                 Sair
             </a>

@@ -26,7 +26,7 @@ $stmt->bind_param("iss", $funcionario_id, $tipo, $horario);
 if ($stmt->execute()) {
     $stmt->close();
     $conn->close();
-    header("Location: dashboard.php?success=1");
+    header("Location: historico.php?success=1");
     exit;
 } else {
     echo "Erro ao registrar ponto: " . $stmt->error;

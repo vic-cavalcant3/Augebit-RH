@@ -172,7 +172,7 @@ if (!isset($conn)) {
             <?php if (!empty($foto)) : ?>
               <img id="image-preview"  src="<?php echo $foto; ?>" class="w-40 h-40 rounded-full border-4 border-primary-100 shadow-md">
             <?php endif; ?>
-              <img id="image-preview" src="https://via.placeholder.com/160x160?text=Foto" class = "w-40 h-40 rounded-full border-4 border-primary-100 shadow-md"/>
+              <!-- <img id="image-preview" src="https://via.placeholder.com/160x160?text=Foto" class = "w-40 h-40 rounded-full border-4 border-primary-100 shadow-md"/> -->
             
 
             </div>

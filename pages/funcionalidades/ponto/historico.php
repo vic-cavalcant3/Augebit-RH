@@ -413,11 +413,11 @@ $result = $stmt->get_result();
                     <i class="fas fa-home"></i>
                     Dashboard
                 </a>
-                <a href="ponto.php">
+                <a href="registrar.php">
                     <i class="fas fa-clock"></i>
                     Registrar Ponto
                 </a>
-                <a href="logout.php">
+                <a href="../../index.php">
                     <i class="fas fa-sign-out-alt"></i>
                     Sair
                 </a>
