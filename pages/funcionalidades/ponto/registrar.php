@@ -286,9 +286,9 @@ $usuario = $_SESSION['usuario'];
         </form>
 
         <div class="footer-links">
-            <a href="dashboard.php">
+            <a href="ferias.php">
                 <i class="fas fa-home"></i>
-                Dashboard
+                Férias
             </a>
             <a href="historico.php">
                 <i class="fas fa-history"></i>

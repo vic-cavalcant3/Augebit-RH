@@ -66,6 +66,7 @@ session_start();
             border-radius: 50px;
             color: var(--primary-color);
             transition: var(--transition);
+            text-decoration: none;
         }
         .btn:hover {
             background-color: var(--primary-color);
@@ -388,12 +389,12 @@ session_start();
         <nav>
             <ul>
                 <li><a href="index.php" class="active">Home</a></li>
-                  <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
                 <li><a href="cursos.php">Cursos</a></li>
                 <li><a href="biblioteca.php">Biblioteca</a></li>
+                <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
                 <li>
                 <?php if (isset($_SESSION['usuario'])): ?>
-                    <a href="funcionalidades/ponto/registrar.php">Bater ponto</a>
+                    <a href="funcionalidades/ponto/registrar.php">Area do Funcionario</a>
                 <?php else: ?>
                     <a href="#"></a>
                 <?php endif; ?>
@@ -414,7 +415,7 @@ session_start();
             <div class="hero-text">
                 <h1>Design estratégico<br>e funcional.</h1>
                 <p>Transformamos ideias em soluções tangíveis através de um design centrado no usuário.</p>
-                <a href="#nossa-metodologia" class="btn" id="saibaMaisBtn">Saiba mais</a>
+                <a href="funcionalidades/recrutamento.php" class="btn" id="saibaMaisBtn">Faça parte!</a>
             </div>
             <div class="hero-image">
                 <img src="../img/Elemento.png" alt="Projetos de design industrial">

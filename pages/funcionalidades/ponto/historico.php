@@ -409,9 +409,9 @@ $result = $stmt->get_result();
             </div>
 
             <div class="footer-links">
-                <a href="dashboard.php">
+                <a href="ferias.php">
                     <i class="fas fa-home"></i>
-                    Dashboard
+                    Férias
                 </a>
                 <a href="registrar.php">
                     <i class="fas fa-clock"></i>

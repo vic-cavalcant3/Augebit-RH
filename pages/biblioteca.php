@@ -17,12 +17,12 @@ session_start();
          <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                  <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
                 <li><a href="cursos.php"   >Cursos</a></li>
                 <li><a href="biblioteca.php" class="active" >Biblioteca</a></li>
+                <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
                 <li>
                 <?php if (isset($_SESSION['usuario'])): ?>
-                    <a href="funcionalidades/ponto/registrar.php">Bater ponto</a>
+                    <a href="funcionalidades/ponto/registrar.php">Area do Funcionario</a>
                 <?php else: ?>
                     <a href="#"></a>
                 <?php endif; ?>

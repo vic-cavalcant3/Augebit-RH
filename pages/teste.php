@@ -18,7 +18,6 @@ session_start();
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="centralDeAjuda.php">Central de Ajuda</a></li>
-                <li><a href="cursos.php">Cursos</a></li>
                 <li><a href="#" class="active">Biblioteca</a></li>
                 <li><a href="#">Contato</a></li>
             </ul>
@@ -43,7 +42,6 @@ session_start();
     <button class="filter-btn" onclick="filtrarRecursos('ebook')">E-books</button>
 </div>
 
-    <!-- Conteúdo estático com atributos de dados -->
     <section class="category-section" data-category="saude-mental">
         <h2 class="category-title">Saúde Mental</h2>
         <div class="content-grid">
@@ -102,11 +100,10 @@ session_start();
         </div>
     </section>
 
-    <!-- Nova seção de cursos -->
 <section class="category-section" data-category="cursos">
     <h2 class="category-title">Cursos</h2>
     <div class="content-grid">
-        <!-- Card 1 - Humor no Ambiente Corporativo -->
+        
         <div class="resource-card" data-type="video">
             <div class="resource-type video">Vídeo</div>
             <h3>Humor no Ambiente Corporativo</h3>
@@ -119,7 +116,6 @@ session_start();
             </a>
         </div>
 
-        <!-- Card 2 - Controle de Estresse no Trabalho -->
         <div class="resource-card" data-type="video">
             <div class="resource-type video">Vídeo</div>
             <h3>Controle de Estresse no Trabalho</h3>
@@ -132,7 +128,6 @@ session_start();
             </a>
         </div>
 
-        <!-- Card 3 - Programas de Bem-Estar -->
         <div class="resource-card" data-type="video">
             <div class="resource-type video">Vídeo</div>
             <h3>Participação em Programas de Bem-Estar</h3>
@@ -145,7 +140,6 @@ session_start();
             </a>
         </div>
 
-        <!-- Card 5 - Inteligência Emocional -->
         <div class="resource-card" data-type="video">
             <div class="resource-type video">Vídeo</div>
             <h3>Inteligência Emocional</h3>
@@ -158,7 +152,6 @@ session_start();
             </a>
         </div>
 
-        <!-- Card 6 - Gestão do Tempo -->
         <div class="resource-card" data-type="video">
             <div class="resource-type video">Vídeo</div>
             <h3>Gestão do Tempo e Produtividade</h3>
@@ -171,7 +164,6 @@ session_start();
             </a>
         </div>
 
-        <!-- Card 7 - Comunicação Assertiva -->
         <div class="resource-card" data-type="video">
             <div class="resource-type video">Vídeo</div>
             <h3>Comunicação Assertiva</h3>
@@ -184,7 +176,6 @@ session_start();
             </a>
         </div>
 
-        <!-- Card 8 - Liderança Positiva -->
         <div class="resource-card" data-type="video">
             <div class="resource-type video">Vídeo</div>
             <h3>Liderança Positiva</h3>
@@ -239,9 +230,9 @@ session_start();
         return traducoes[tipo] || tipo;
         }
 
-        // Opcional: Carregar recursos via JavaScript
+        // Carrega recursos via JavaScript 
         document.addEventListener('DOMContentLoaded', () => {
-            // Se quiser carregar recursos dinamicamente via JS
+            // Agora dinamicamente via JS
             const recursos = [
                 {
                     categoria: 'Saúde Mental',
