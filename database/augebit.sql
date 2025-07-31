@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15/06/2025 às 01:48
+-- Tempo de geração: 31/07/2025 às 21:09
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -37,14 +37,6 @@ CREATE TABLE `agendamentos` (
   `horario` time NOT NULL,
   `profissional` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `agendamentos`
---
-
-INSERT INTO `agendamentos` (`id`, `nome`, `cpf`, `telefone`, `email`, `data`, `horario`, `profissional`) VALUES
-(1, 'Victor Rodrigues', '2147483647', '2147483647', 'victorrocha0223@gmail.com', '2025-07-25', '11:50:00', 'Dr. Pedro Costa'),
-(2, 'crist', '2147483647', '2147483647', 'victorrocha0223@gmail.com', '2025-07-16', '17:00:00', 'Dr. João Silva');
 
 -- --------------------------------------------------------
 
@@ -87,6 +79,29 @@ INSERT INTO `comentarios` (`id`, `nome`, `comentario`, `usabilidade`, `produtivi
 (2, 'victor', 'ATE QUE EU GOSTO VEI', '2', '4', 'BANHEIRO, NAO TENHO VONTADE', 'SIMPATIA', '3'),
 (3, 'victor', 'dza', '5', '4', 'sads', 'asd', '2'),
 (4, 'victor', 'asdas', '5', '4', 'sadsd', 'sadddd', '2');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `ferias_licencas`
+--
+
+CREATE TABLE `ferias_licencas` (
+  `id` int(11) NOT NULL,
+  `funcionario` varchar(100) NOT NULL,
+  `inicio` date NOT NULL,
+  `fim` date NOT NULL,
+  `status` enum('Aprovada','Pendente','Rejeitada') NOT NULL,
+  `data_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `tipo` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `ferias_licencas`
+--
+
+INSERT INTO `ferias_licencas` (`id`, `funcionario`, `inicio`, `fim`, `status`, `data_registro`, `tipo`) VALUES
+(1, 'Joao', '2025-06-09', '2025-06-28', 'Aprovada', '2025-06-06 14:37:33', 'ferias');
 
 -- --------------------------------------------------------
 
@@ -148,9 +163,7 @@ CREATE TABLE `funcionarios` (
 --
 
 INSERT INTO `funcionarios` (`id`, `foto`, `nome`, `email`, `telefone`, `senha`, `setor`, `cpf`, `nascimento`, `biografia`, `email_secundario`, `celular`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `cidade`, `estado`, `linkedin`, `github`, `instagram`) VALUES
-(20, '', 'Victor Rodrigues Cavalcante Rocha', 'victorrocha0223@gmail.com', '111945786', '2512', 'RH', '2147483647', '2007-12-25', 'amo pipoca', 'viccvalcantesenai@gmail.com', '2147483647', '8505340', 'Rua Antônio Massa', '178', 'casa', 'Jardim do Papai', 'Ferraz de Vasconcelos', 'SP', 'vic-cavalcant3', 'vic-cavalcant3', 'viccavalcant3'),
-(21, '', 'vic', 'victorrocha0223@gmail.com', '2147483647', '12345', 'Marketing', '0', '0000-00-00', '', '', '0', '0', '', '0', '', '', '', '', '', '', ''),
-(22, '', 'victor', 'victorrocha0223@gmail.com', '2147483647', '2512', 'Administrativo', '0', '0000-00-00', '', '', '0', '0', '', '0', '', '', '', '', '', '', '');
+(23, './uploads(foto_perfil)/1753960684_sticker-smash.png', 'vic', 'victorrocha0223@gmail.com', '11941412354', '1234', 'RH', '47824329844', '2007-12-25', 'testandooooo', 'viccvalcantesenai@gmail.com', '11941412354', '8505340', 'Rua Antônio Massa', '188', 'casa', 'Jardim do Papai', 'Ferraz de Vasconcelos', 'SP', 'vic-cavalcant3', 'vic-cavalcant3', 'instagram');
 
 -- --------------------------------------------------------
 
@@ -164,6 +177,17 @@ CREATE TABLE `pontos` (
   `tipo` enum('entrada','saida') NOT NULL,
   `horario` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `pontos`
+--
+
+INSERT INTO `pontos` (`id`, `funcionario_id`, `tipo`, `horario`) VALUES
+(9, 23, 'entrada', '2025-07-31 08:21:49'),
+(10, 23, 'saida', '2025-07-31 08:22:12'),
+(11, 23, 'entrada', '2025-07-31 08:26:05'),
+(12, 23, 'entrada', '2025-07-31 08:33:44'),
+(13, 23, 'entrada', '2025-07-31 08:34:26');
 
 -- --------------------------------------------------------
 
@@ -233,6 +257,12 @@ ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices de tabela `ferias_licencas`
+--
+ALTER TABLE `ferias_licencas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `folha_pagamento`
 --
 ALTER TABLE `folha_pagamento`
@@ -265,7 +295,7 @@ ALTER TABLE `recrutamento`
 -- AUTO_INCREMENT de tabela `agendamentos`
 --
 ALTER TABLE `agendamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `clientes`
@@ -280,6 +310,12 @@ ALTER TABLE `comentarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de tabela `ferias_licencas`
+--
+ALTER TABLE `ferias_licencas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de tabela `folha_pagamento`
 --
 ALTER TABLE `folha_pagamento`
@@ -289,13 +325,13 @@ ALTER TABLE `folha_pagamento`
 -- AUTO_INCREMENT de tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de tabela `pontos`
 --
 ALTER TABLE `pontos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `recrutamento`
