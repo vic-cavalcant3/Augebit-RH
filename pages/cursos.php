@@ -227,7 +227,6 @@ session_start();
       text-underline-offset: 3px;
     }
 
-    /* Cards */
     .cards {
       display: grid;
       gap: 2rem;
@@ -316,7 +315,6 @@ session_start();
       transform: translateX(3px);
     }
 
-    /* Footer */
     .footer {
       background: white;
       text-align: center;
@@ -338,7 +336,6 @@ session_start();
       color: #8A6BFF;
     }
 
-    /* Responsividade */
     @media (max-width: 768px) {
       .header {
         flex-direction: column;

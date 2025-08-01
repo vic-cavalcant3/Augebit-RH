@@ -192,7 +192,7 @@ session_start();
 
     <script>
         function filtrarRecursos(tipo) {
-        // Atualiza botões ativos
+
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.classList.remove('active');
             const textoBotao = btn.textContent.trim().toLowerCase();
@@ -203,7 +203,7 @@ session_start();
             }
         });
 
-        // Filtra as cards
+   
         document.querySelectorAll('.resource-card').forEach(card => {
             card.classList.remove('hidden');
             if (tipo !== 'todos' && card.dataset.type !== tipo) {
@@ -211,20 +211,20 @@ session_start();
             }
         });
 
-        // Oculta categorias vazias (CORREÇÃO IMPORTANTE)
+      
         document.querySelectorAll('.category-section').forEach(section => {
             const visibleCards = section.querySelectorAll('.resource-card:not(.hidden)').length;
             section.style.display = visibleCards > 0 ? 'block' : 'none';
         });
     }
 
-    // Função de tradução de tipos (ATUALIZADA)
+ 
     function traduzirTipo(tipo) {
         const traducoes = {
             'article': 'Artigos',
             'video': 'Vídeos',
             'podcast': 'Podcasts',
-            'ebook': 'E-books', // Agora compatível com o texto do botão
+            'ebook': 'E-books', 
             'todos': 'Todos'
         };
         return traducoes[tipo] || tipo;
@@ -283,7 +283,6 @@ session_start();
             background: #f8f9fa;
         }
 
-        /* CONTAINER*/
         .container_biblioteca{
              max-width: 1280px;
              margin: 0 auto;
@@ -291,8 +290,6 @@ session_start();
             align-items: center;
         }
 
-      
-        /* Filtros */
         .filters {
             display: flex;
             gap: 1rem;
@@ -331,7 +328,6 @@ session_start();
             color: #fff;
         }
 
-        /* Grid de Conteúdo */
         .content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

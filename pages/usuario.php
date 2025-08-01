@@ -136,35 +136,23 @@ if (!isset($conn)) {
   </script>
   
   <style>
-
         * {font-family: 'Poppins'; }
   </style>
+
 </head>
 <body class="bg-gray-50 min-h-screen">
   <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
 
-    <!-- Cabeçalho -->
     <div class="flex justify-between items-center mb-8">
       <h1 class="text-3xl font-bold text-primary-700">
         <i class="fas fa-user-circle mr-2"></i> Meu Perfil
       </h1>
     </div>
 
-    <!-- Barra -->
-    <!-- <div class="mb-8 bg-white p-4 rounded-xl shadow-sm">
-      <div class="flex justify-between mb-2">
-        <span class="font-medium">Perfil 85% completo</span>
-        <span class="text-primary-600">Adicione mais informações</span>
-      </div>
-      <div class="w-full bg-gray-200 rounded-full h-2.5">
-        <div class="bg-primary-600 h-2.5 rounded-full" style="width: 85%"></div>
-      </div>
-    </div> -->
-
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-      <!-- Coluna esquerda - Foto e menu -->
+
       <div class="lg:col-span-1 space-y-6">
-        <!-- Foto de perfil -->
+
         <div class="bg-white p-6 rounded-xl shadow-sm">
           <div class="flex flex-col items-center">
             <div class="relative mb-4">
@@ -178,11 +166,8 @@ if (!isset($conn)) {
             </div>
               <form method="POST" action = "gravar.php" enctype="multipart/form-data" >
 
-
-<!-- INPUT DE IMAGEM (sempre presente) -->
 <input  type="file" name="foto" accept="image/*" class="hidden" id="imagemInput">
 
-<!-- BOTÃO PARA ACIONAR O INPUT -->
 <label for="imagemInput" class="text-sm text-primary-600 hover:text-primary-700 cursor-pointer font-medium">
   Alterar foto
 </label>
@@ -191,11 +176,8 @@ if (!isset($conn)) {
         </div>
       </div>
 
-      <!-- Coluna direita - Conteúdo principal -->
       <div class="lg:col-span-3 space-y-6">
      
-
-          <!-- Seção: Dados Pessoais -->
           <div id="dados-pessoais" class="bg-white p-6 rounded-xl shadow-sm">
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-xl font-semibold text-gray-800">
@@ -237,7 +219,6 @@ if (!isset($conn)) {
             </div>
           </div>
 
-          <!-- Seção: Contato -->
           <div id="contato" class="bg-white p-6 rounded-xl shadow-sm">
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-xl font-semibold text-gray-800">
@@ -324,7 +305,6 @@ if (!isset($conn)) {
             </div>
           </div>
 
-          <!-- Seção: Redes Sociais -->
           <div id="redes-sociais" class="bg-white p-6 rounded-xl shadow-sm">
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-xl font-semibold text-gray-800">
@@ -360,25 +340,6 @@ if (!isset($conn)) {
             </div>
           </div>
 
-          <!-- Seção: Segurança -->
-          <!-- <div id="seguranca" class="bg-white p-6 rounded-xl shadow-sm">
-            <div class="flex justify-between items-center mb-4">
-              <h2 class="text-xl font-semibold text-gray-800">
-                <i class="fas fa-lock mr-2 text-primary-600"></i> Segurança
-              </h2>
-            </div>
-
-            <div class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Senha atual</label>
-                <input type="password" id="senha" readonly value="<?php echo htmlspecialchars($senha); ?>"
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 pr-10">
-               </div>
-
-            </div>
-          </div> -->
-
-          <!-- Preferências -->
           <div id="preferencias" class="bg-white p-6 rounded-xl shadow-sm">
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-xl font-semibold text-gray-800">
@@ -417,7 +378,6 @@ if (!isset($conn)) {
             </div>
           </div>
 
-          <!-- Botões para Salvar -->
           <div class="flex justify-between mt-8">
             <button id= "meuBotao" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
               Cancelar
@@ -433,7 +393,6 @@ if (!isset($conn)) {
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="mt-12 py-6 bg-gray-100 border-t">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
       <p>© 2025 AUGEBIT. Todos os direitos reservados.</p>

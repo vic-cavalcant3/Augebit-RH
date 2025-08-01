@@ -130,8 +130,7 @@
     
     <nav class="p-4 space-y-1 h-full overflow-y-auto pb-20">
       <div class="border-t border-gray-100 my-3"></div>
-      
-      <!-- Link para mostrar todas as categorias -->
+    
       <a 
         href="#" 
         onclick="showAllCategories(); return false;" 
@@ -331,7 +330,6 @@
   </aside>
 
   <div class="ml-0 md:ml-72 px-4 md:px-8 py-12 transition-all duration-300">
-    <!-- Botão de voltar -->
     <div class="mb-6">
       <a href="index.php" class="back-button text-gray-700 hover:text-gray-900">
         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -342,7 +340,6 @@
     </div>
 
     <main>
-      <!-- Seção de todas as categorias (visível por padrão) -->
       <section id="all-categories" class="mb-10">
         <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-6">Todas as Perguntas Frequentes</h2>
         
@@ -362,7 +359,6 @@
         </div>
       </section>
 
-      <!-- Seções individuais de cada categoria (ocultas por padrão) -->
       <?php foreach ($faq as $categoria => $perguntas): 
         $categoriaId = strtolower(str_replace(' ', '-', $categoria));
       ?>
@@ -410,20 +406,18 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Mostrar todas as categorias por padrão
+
       showAllCategories();
     });
 
     function showAllCategories() {
-      // Mostrar seção "Todas as Categorias"
+ 
       document.getElementById('all-categories').style.display = 'block';
       
-      // Ocultar todas as seções individuais
       document.querySelectorAll('.category-section').forEach(section => {
         section.classList.add('hidden');
       });
       
-      // Ativar link "Todas as Categorias" no sidebar
       document.querySelectorAll('.sidebar-item').forEach(item => {
         item.classList.remove('active');
       });
@@ -466,10 +460,9 @@
     }
     
     function filterCategory(category) {
-      // Ocultar a seção "Todas as Categorias"
+
       document.getElementById('all-categories').style.display = 'none';
       
-      // Ativar item do sidebar correspondente
       document.querySelectorAll('.sidebar-item').forEach(item => {
         item.classList.remove('active');
       });
@@ -480,22 +473,19 @@
       } else {
         document.querySelector(`[data-category="${category}"]`).classList.add('active');
         
-        // Ocultar todas as seções
+
         document.querySelectorAll('.category-section').forEach(section => {
           section.classList.add('hidden');
         });
         
-        // Mostrar apenas a seção selecionada
         const targetSection = document.getElementById(`category-${category}`);
         targetSection.classList.remove('hidden');
       }
       
-      // Fechar sidebar no mobile
       if (window.innerWidth < 768) {
         closeSidebar();
       }
       
-      // Rolagem suave para a seção
       if (category !== 'all') {
         const target = document.getElementById(`category-${category}`);
         if (target) {

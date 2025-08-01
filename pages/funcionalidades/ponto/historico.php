@@ -322,7 +322,6 @@ $result = $stmt->get_result();
             </div>
 
             <?php
-            // Contar registros para estatísticas
             $total_registros = 0;
             $entradas = 0;
             $saidas = 0;

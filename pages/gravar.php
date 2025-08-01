@@ -32,7 +32,7 @@ if (!isset($conn)) {
     die("Erro: Não foi possível conectar ao banco de dados.");
 }
 
-// Verifica se o formulário foi submetido
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("Location: perfil.php");
     exit;
@@ -62,7 +62,6 @@ $linkedin = filter_input(INPUT_POST, 'linkedin', FILTER_SANITIZE_URL);
 $github = filter_input(INPUT_POST, 'github', FILTER_SANITIZE_URL);
 $instagram = filter_input(INPUT_POST, 'instagram', FILTER_SANITIZE_URL);
 
-// Validações adicionais
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     die("Email inválido");
 }
@@ -121,8 +120,7 @@ $stmt->bind_param('sssississiisisssssssi',
         $github,
         $instagram,
         $user_id);
-    
-    // Executa a atualização
+ 
     if (!$stmt->execute()) {
         throw new Exception("Erro ao atualizar perfil: " . $stmt->error);
     }
@@ -154,7 +152,7 @@ $stmt->bind_param('sssississiisisssssssi',
 
      $_SESSION['mensagem'] = "Dados enviados com sucesso!";
     
-    // Redireciona com mensagem de sucesso
+ 
     echo '<script>alert("Dados enviados com sucesso!");</script>';
     header("Location: index.php");
     exit;

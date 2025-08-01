@@ -46,9 +46,9 @@ nav ul {
 nav a { 
     color: black;
     font-weight: 500; 
-    font-size: 0.9rem; /* Reduzi o tamanho da fonte */
+    font-size: 0.9rem; 
     position: relative;
-    padding: 0.4rem 0; /* Ajuste de padding */
+    padding: 0.4rem 0; 
     transition: var(--transition);
     text-decoration: none;
 }
@@ -72,14 +72,14 @@ nav ul li a.active::after {
 .btn-header {
     display: inline-flex;
     align-items: center;
-    padding: 0.6rem 1.5rem; /* Reduzi o padding */
-    font-size: 0.85rem; /* Reduzi o tamanho da fonte */
+    padding: 0.6rem 1.5rem; 
+    font-size: 0.85rem; 
     font-weight: 600;
     border: 2px solid var(--primary-color);
     border-radius: 50px;
     color: var(--primary-color);
     transition: var(--transition);
-    margin-left: 1.5rem; /* Reduzi a margem */
+    margin-left: 1.5rem; 
     text-decoration: none;
 }
 
@@ -90,7 +90,7 @@ nav ul li a.active::after {
     box-shadow: 0 4px 12px rgba(108, 99, 255, 0.25);
 }
 
-/* Responsividade melhorada */
+
 @media (max-width: 1200px) {
     nav ul {
         gap: 1.5rem;

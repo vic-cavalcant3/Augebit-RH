@@ -305,7 +305,6 @@ $usuario = $_SESSION['usuario'];
         function updateTime() {
             const now = new Date();
             
-            // Formatação da hora
             const timeOptions = {
                 hour: '2-digit',
                 minute: '2-digit',
@@ -313,7 +312,6 @@ $usuario = $_SESSION['usuario'];
                 hour12: false
             };
             
-            // Formatação da data
             const dateOptions = {
                 weekday: 'long',
                 year: 'numeric',
@@ -328,11 +326,9 @@ $usuario = $_SESSION['usuario'];
                 now.toLocaleDateString('pt-BR', dateOptions);
         }
 
-        // Atualizar o relógio a cada segundo
         updateTime();
         setInterval(updateTime, 1000);
 
-        // Adicionar som de feedback ao selecionar tipo de ponto
         document.getElementById('tipo').addEventListener('change', function() {
             if (this.value === 'entrada') {
                 this.style.borderColor = '#28a745';
